@@ -6,8 +6,8 @@
 
 <link rel="stylesheet" type="text/css" href="css/templatemo_style.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
-<script type="text/javascript" src="js/jquery-latest.min.js">
-</script>
+<script type="text/javascript" src="js/jquery-latest.min.js"/></script>
+<script type="text/javascript"src="js/jquery-1.11.1.js"></script>
 	<script >
 		$(function(){
 	
@@ -23,7 +23,14 @@
 		this.blur();
 	});
 });
+	$(document).ready(function() {
+		if(localStorage.getItem('label')!=null){
+			$('#header_right').html(localStorage.getItem('label')+"|<a href='logout.html'>logout</a>");
+		}
+	});
+	
 </script>
+
 </head>
 
 <body>
@@ -32,7 +39,7 @@
 		<h1><a href="index.html"></a></h1>
 	</div>
 	<div id="header_right">
-    	<a href="login.html">Login</a>
+    	<a href="login.html" id="chklogin">Login</a>
         |
         <a href="register.html">Register</a>
     </div>
@@ -40,19 +47,16 @@
 </div>
 <div>
         <ul id="menu">
-            <li><a href="index.jsp">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="products.jsp">Products</a>
-            	<ul>
-                	<li><a href="#">1</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">1</a></li>
-                </ul>
             </li>
             <li><a href="Search.jsp" >Search</a></li>
             <li><a href="checkout.jsp" >Checkout</a></li>
         </ul>
 		<br style="clear: left" />
-    </div>	
-	
+    </div>
+<br><br><br>
+    <H1>Home:</H1>	
+	  
 </body>
 </html>
