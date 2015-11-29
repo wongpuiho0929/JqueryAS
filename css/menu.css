@@ -35,3 +35,8 @@
 #menu li ul li { border-right: 1px solid #fff; }
 #menu li ul li a { display: inline; }
 #menu li ul li a:hover { text-decoration: underline; }
+
+#site_title {
+	left:30px;
+	
+}
