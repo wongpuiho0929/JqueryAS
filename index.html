@@ -3,14 +3,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>BestTrip Travel Agency</title>
-
+        
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <link rel="stylesheet" type="text/css" href="css/menu.css" />
+        
         <script type="text/javascript" src="js/jquery-latest.min.js"></script>
         <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+        
         <script type="text/javascript">
             $(function () {
-
                 $('#menu li').hover(function () {
                     var _this = $(this),
                             _subnav = _this.children('ul');
@@ -27,9 +28,7 @@
                 if (localStorage.getItem('label') != null) {
                     $('#header_right').html(localStorage.getItem('label') + "|<a href='logout.html'>logout</a>");
                 }
-
             });
-
         </script>
 
     </head>
@@ -42,7 +41,6 @@
                 </div>
                 <div id="header_right">
                     <a target="frame" href="login.html" id="chklogin">Login</a>
-                    |
                     <a target="frame" href="register.html">Register</a>
                 </div>
                 <div class="cleaner"></div>
