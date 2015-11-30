@@ -27,9 +27,9 @@
             });
             $(document).ready(function () {
                 if (localStorage.getItem('label') != null) {
-                    $('#header_right').html(localStorage.getItem('label') + "|<a href='logout.html'>logout</a>");
+                    $('#header_right').html(localStorage.getItem('label') + "|<a href='logout.html' style='padding-right: 80px'>logout</a>");
                     new jBox('Notice', {
-                        content: 'Welcome,'+localStorage.getItem('label'), 
+                        content: 'Welcome,' + localStorage.getItem('label'),
                     });
                 }
 
@@ -84,7 +84,7 @@
         <div id="wrapper">
             <div id="header">
                 <div id="site_title">
-                   <h1><font> </font><a href="index.html"></a></h1>
+                    <h1><font> </font><a href="index.html"></a></h1>
                 </div>
                 <div id="header_right">
 
@@ -94,8 +94,8 @@
                        <tr><td hegith=1></td></tr>
                        <tr><th align='right'>Password: </th><td>
                        <input type='password' id='password' /></td></tr>
-                       </table>">Login</a>
-                    <a target="frame" href="register.html">Register</a>
+                       </table>">Login | </a>
+                    <a target="frame" href="register.html" style="padding-right: 80px">Register</a>
                 </div>
                 <div class="cleaner"></div>
             </div>
@@ -109,9 +109,11 @@
                 </ul>
                 <br style="clear: left" />
             </div>
+            
             <div class="mainDiv">
-                <iframe id="frame" name="frame" width="100%" height="100%"  src="home.html" frameBorder="0"></iframe>
+                <iframe id="frame" name="frame" width="1000" height="100%"  src="home.html" frameBorder="0"></iframe>
             </div>
+          
         </div>
 
     </body>

@@ -1,10 +1,49 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>無標題文件</title>
-</head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        
+        <script type="text/javascript" src="js/1.7.1.jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        
+        <title>Flights</title>
+        <script>
+            $(document).ready(function () {
+                $.getJSON('js/db.json', function (jd) {
+                    s = "";
+                    for (i in jd.flight[0].hk) {
+                        if (jd.flight[0].hk.hasOwnProperty(i)) {
+                            s += "<ul><h3>" + jd.flight[0].hk[i].place + "</h3>";
+                            for (var k = 0; k < jd.flight[0].hk[i].company.length; k++) {
+                                s += "<ul><li>" + jd.flight[0].hk[i].company[k].name + "</li>";
+                                for (var t = 0; t < jd.flight[0].hk[i].company[k].price.length; t++) {
+                                    s += "<li>Price: (HKD)" + jd.flight[0].hk[i].company[k].price[t];
+                                    s += " Time: " + jd.flight[0].hk[i].company[k].time[t] + "</li>";
+                                }
+                                s += "</ul>";
+                            }
+                            s += "</ul>";
+                        }
+                    }
+                    $("#newFlight").append(s)
+                });
+            });
+        </script>
+    </head>
 
-<body>
-</body>
+    <body>
+        <div id="wrapper">
+            <div id="newFlight">
+            </div>
+            <div class="h50"></div> 
+            <div id="footer">
+                <hr/>
+                <p>
+                    <a href="index.html">Home</a> | <a href="flights.html">Flights</a> |  <a href="hotels.html">Hotels</a> |  <a href="search.html">Search</a> |  <a href="ceckout.html">Checkout</a>
+                </p>
+
+                Copyright © 2015 <a href="index.jsp">BestTrip Travel</a>
+            </div>
+        </div>
+    </body>
 </html>

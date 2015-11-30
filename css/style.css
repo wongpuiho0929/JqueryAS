@@ -176,14 +176,6 @@ h6 {
 
 #sidebar { width: 240px }
 
-#footer {
-    width: 920px;
-    text-align: center;	
-    padding: 9px 19px;
-    background: #121212;
-    border: 1px solid #3a3a3a
-}
-
 #site_title { 
     float: left; 
 }
@@ -208,6 +200,8 @@ h6 {
     float: right; 
     margin-top: 5px; 
     font-size:20px;
+   
+   
 }
 
 #header_right a { 
@@ -464,8 +458,14 @@ h6 {
     margin-right: 0; 
 }
 
-#footer { 
-    color: #707070; 
+#footer {
+    width: 850px;
+    text-align: center;	
+    padding: 9px 10px;
+    background: #f0f8ff;
+    clear: both;
+    height: 3em;
+    margin-top: -3em;
 }
 
 #footer a {
@@ -490,3 +490,32 @@ h6 {
     text-align: center;
 
 }
+
+.panel {
+    margin-bottom: 20px;
+    background-color: #FFF;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+    width: 680px;
+    height: 30px;
+    padding: 0px;
+   
+    font-size: 16px;
+    color: #0ec4f7;
+    
+}
+
+.panel-body {
+    padding: 8px 5px;
+    float: left;
+    background-color: #f8fdfd;
+}
+.panel-new{
+    width: 280px;
+    float: left;
+    padding: 10px;
+    font-size: 12px;
+}
+
+

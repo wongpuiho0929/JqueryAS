@@ -6,8 +6,14 @@
 
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <link rel="stylesheet" type="text/css" href="css/menu.css" />
-        <script type="text/javascript" src="js/jquery-latest.min.js">
-        </script>
+        <script type="text/javascript" src="js/jquery-latest.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="css/set1.css" />
+        <script src="js/classie.js"></script>
+
         <script >
             $(function () {
 
@@ -29,7 +35,7 @@
 
             $(document).ready(function () {
 
-                $("#login").click(function () {
+                $("#Register").click(function () {
                     var name = $('#userName').val();
                     var password = $("#password").val();
                     if (name == "" || password == "") {
@@ -45,47 +51,97 @@
                             var i = JSONdb.login.length + 1;
                             JSONdb.login.push({"id": i, "username": name, "password": password, "position": "admin"});
                             localStorage["db"] = JSON.stringify(JSONdb);
+                            alert("Successful");
                             console.log(localStorage.getItem("db"));
-                            location.href = "login.html";
+                            window.top.location.href = "index.html";
                         } else {
                             $.getJSON('js/db.json', function (jd) {
                                 var i = jd.login.length + 1;
                                 jd['login'].push({"id": i, "username": name, "password": password, "position": "admin"});
-                                alert("Please login First");
+                                alert("Successful");
                                 localStorage["db"] = JSON.stringify(jd);
                                 console.log(localStorage["db"]);
-                                location.href = "login.html";
+                                window.top.location.href = "index.html";
                             });
                         }
                     }
 
                 });
+                (function () {
+                    // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+                    if (!String.prototype.trim) {
+                        (function () {
+                            // Make sure we trim BOM and NBSP
+                            var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+                            String.prototype.trim = function () {
+                                return this.replace(rtrim, '');
+                            };
+                        })();
+                    }
+
+                    [].slice.call(document.querySelectorAll('input.input__field')).forEach(function (inputEl) {
+                        // in case the input is already filled..
+                        if (inputEl.value.trim() !== '') {
+                            classie.add(inputEl.parentNode, 'input--filled');
+                        }
+
+                        // events:
+                        inputEl.addEventListener('focus', onInputFocus);
+                        inputEl.addEventListener('blur', onInputBlur);
+                    });
+
+                    function onInputFocus(ev) {
+                        classie.add(ev.target.parentNode, 'input--filled');
+                    }
+
+                    function onInputBlur(ev) {
+                        if (ev.target.value.trim() === '') {
+                            classie.remove(ev.target.parentNode, 'input--filled');
+                        }
+                    }
+                })();
             });
         </script>
 
     </head>
 
     <body>
-
-        <div style="padding:10px">
-            <div class="input_field">
-
-                <table>
+        
+            
+        
+        <center><div style="background-color: #f8fdfd; width: 800px;" >
+                Quick sign up:
+                <table >
+                    
                     <tr>
-                        <th>UserName: </th>
-                        <td><input type="text" id="userName" /></td>
+                        <td rowspan="4"><img src="images/welcome.png"/></td>
+                        <td>
+                            <span class="input input--hoshi">
+                                <input class="input__field input__field--hoshi" type="text" id="userName">
+                                    <label class="input__label input__label--hoshi input__label--hoshi-color-1">
+                                        <span class="input__label-content input__label-content--hoshi">UserName</span>
+                                    </label>
+                            </span>
+                        </td>
+                        <td rowspan="4"><img src="images/welcome2.png"/></td>
                     </tr>
                     <tr>
-                        <th>Password: </th>
-                        <td><input type="password" id="password" /></td>
+
+                        <td>  <span class="input input--hoshi">
+                                <input class="input__field input__field--hoshi" type="password" id="password">
+                                    <label class="input__label input__label--hoshi input__label--hoshi-color-2">
+                                        <span class="input__label-content input__label-content--hoshi">Password</span>
+                                    </label>
+                            </span>
+
+                        </td>
                     </tr>
-                    <tr><th colspan="2"><a href="Terms_and_conditions.html" target="_blank">Terms and conditions</a></th></tr>
-                    <tr><td align="right" colspan="2"><input type="submit" value="Agree and Sign up" id="Register" /></td></tr>
+                    <tr><th ><input type="checkbox" id="chkbox"/><a href="Terms_and_conditions.html" target="_blank">Terms and conditions</a></th></tr>
+                    <tr><td align="right"><input type="submit" value="Sign up" id="Register" style="background-color: #e4fefe"/></td></tr>
+                
                 </table>
+                <div class="h40"></div>
             </div>
-
-        </div>
-
-
+        </center>
     </body>
 </html>
