@@ -45,7 +45,7 @@
 						var chkname = storedNames.login[i].username;
 						var chkpassword = storedNames.login[i].password;
 						if(name==chkname&&password==chkpassword){
-							location.href='index.html';
+							window.top.location.href = "index.html";
 							localStorage.setItem('label', chkname);
 						}
 					}
@@ -55,7 +55,7 @@
 						var chkname = jd.login[i].username;
 						var chkpassword = jd.login[i].password;
 						if(name==chkname&&password==chkpassword){
-							location.href='index.html';
+							window.top.location.href = "index.html";
 							localStorage.setItem('label', chkname);
 						}
 					}

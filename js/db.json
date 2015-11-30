@@ -4,4 +4,13 @@
     {"id": "3", "username": "mary", "password": "123","position":"admin"},
     {"id": "4", "username": "luke", "password": "123","position":"admin"},
     {"id": "5", "username": "samuel", "password": "123","position":"admin"}
-]}
+	],
+ "ticket":[
+		{"hk":[
+			{"place":"TW","price":"1000"},
+			{"place":"Malaysia","price":"1797"},
+			{"place":"Jp","price":"2204"}
+			]
+		}
+	]
+}
