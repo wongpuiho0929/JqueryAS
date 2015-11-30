@@ -3,13 +3,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>BestTrip Travel Agency</title>
-        
+
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <link rel="stylesheet" type="text/css" href="css/menu.css" />
-        
+
         <script type="text/javascript" src="js/jquery-latest.min.js"></script>
         <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
-        
+        <script src="http://code.jboxcdn.com/0.3.2/jBox.min.js"></script> <!--JBOX!-->
+        <link href="http://code.jboxcdn.com/0.3.2/jBox.css" rel="stylesheet"/><!--JBOX!-->
         <script type="text/javascript">
             $(function () {
                 $('#menu li').hover(function () {
@@ -28,7 +29,49 @@
                 if (localStorage.getItem('label') != null) {
                     $('#header_right').html(localStorage.getItem('label') + "|<a href='logout.html'>logout</a>");
                 }
+
+
+                new jBox('Confirm', {
+                    cancelButton: 'Cancel',
+                    confirmButton: 'Login'
+                });
             });
+            function login() {
+                var name = $('#userName').val();
+                var password = $("#password").val();
+                try {
+                    var JSONdb = JSON.parse(localStorage["db"]);
+                } catch (err) {
+
+                }
+                if (name == "" || password == "") {
+                    alert("Please input userName and Password");
+                } else
+                if (JSONdb != null) {
+                    for (i = 0; i < JSONdb.login.length; i++) {
+                        var chkname = JSONdb.login[i].username;
+                        var chkpassword = JSONdb.login[i].password;
+                        if (name == chkname && password == chkpassword) {
+                            window.top.location.href = 'index.html';
+
+                            localStorage.setItem('label', chkname);
+                        }
+                    }
+                } else {
+                    $.getJSON('js/db.json', function (jd) {
+                        for (i = 0; i < jd.login.length; i++) {
+                            var chkname = jd.login[i].username;
+                            var chkpassword = jd.login[i].password;
+                            if (name == chkname && password == chkpassword) {
+                                window.top.location.href = 'index.html';
+
+                                localStorage.setItem('label', chkname);
+                            }
+                        }
+                    })
+
+                }
+            }
         </script>
 
     </head>
@@ -40,7 +83,14 @@
                     <h1><a href="index.html"></a></h1>
                 </div>
                 <div id="header_right">
-                    <a target="frame" href="login.html" id="chklogin">Login</a>
+
+                    <a target="frame" onclick="login()" data-confirm="<h3>Login:</h3><table>
+                       <tr><th align='right'>UserName: </th><td>
+                       <input type='text' id='userName' /></td></tr>
+                       <tr><td hegith=1></td></tr>
+                       <tr><th align='right'>Password: </th><td>
+                       <input type='password' id='password' /></td></tr>
+                       </table>">Login</a>
                     <a target="frame" href="register.html">Register</a>
                 </div>
                 <div class="cleaner"></div>
