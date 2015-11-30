@@ -29,7 +29,8 @@
                 if (localStorage.getItem('label') != null) {
                     $('#header_right').html(localStorage.getItem('label') + "|<a href='logout.html'>logout</a>");
                     new jBox('Notice', {
-                        content: 'Welcome,'+localStorage.getItem('label')
+                        content: 'Welcome,'+localStorage.getItem('label'),
+                        autoClose: 5000
                     });
                 }
 
