@@ -38,8 +38,8 @@ a.more:hover {
 p { 
     margin: 0 0 10px 0; 
     padding: 0; 
-	font-size:18px;
-	color:#999;
+    font-size:18px;
+    color:#999;
 }
 
 img { 
@@ -207,12 +207,13 @@ h6 {
 #header_right { 
     float: right; 
     margin-top: 5px; 
-	font-size:20px;
+    font-size:20px;
 }
 
 #header_right a { 
-	font-size: 20px;
-    color: #202; 
+    font-size: 20px;
+    color: #202;
+    cursor: pointer; 
 }
 
 #menu_second_bar { 
@@ -478,14 +479,14 @@ h6 {
     bottom: 10px;
     /*    width:100%;*/
     width: 960px;
-    
+
     /*align:center;*/
     /*    margin-left: 120px;
         margin-right: 120px;*/
 }
 
 #frame {
-	overflow-x: hidden;
-	text-align: center;
-    
+    overflow-x: hidden;
+    text-align: center;
+
 }
