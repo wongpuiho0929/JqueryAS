@@ -33,17 +33,17 @@
                     var name = $('#userName').val();
                     var password = $("#password").val();
                     try {
-                        var storedNames = JSON.parse(localStorage["db"]);
+                        var JSONdb = JSON.parse(localStorage["db"]);
                     } catch (err) {
 
                     }
                     if (name == "" || password == "") {
                         alert("Please input userName and Password");
                     } else
-                    if (storedNames != null) {
-                        for (i = 0; i < storedNames.login.length; i++) {
-                            var chkname = storedNames.login[i].username;
-                            var chkpassword = storedNames.login[i].password;
+                    if (JSONdb != null) {
+                        for (i = 0; i < JSONdb.login.length; i++) {
+                            var chkname = JSONdb.login[i].username;
+                            var chkpassword = JSONdb.login[i].password;
                             if (name == chkname && password == chkpassword) {
                                 window.top.location.href = 'index.html';
 
