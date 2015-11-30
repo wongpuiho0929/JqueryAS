@@ -36,13 +36,13 @@
                         alert("Please input userName and Password");
                     } else {
                         if (localStorage["db"] != null) {
-                           
+
                             try {
                                 var JSONdb = JSON.parse(localStorage["db"]);
                             } catch (err) {
 
                             }
-                            var i = JSONdb.login.length+1;
+                            var i = JSONdb.login.length + 1;
                             JSONdb.login.push({"id": i, "username": name, "password": password, "position": "admin"});
                             localStorage["db"] = JSON.stringify(JSONdb);
                             console.log(localStorage.getItem("db"));
@@ -67,17 +67,20 @@
 
     <body>
 
-        <H1>Register:</H1>
         <div style="padding:10px">
             <div class="input_field">
 
-                <p>UserName: 
-                    <input type="text" id="userName" /><br/>
-                </p><p>Password: 
-                    <input type="password" id="password" /><br/>
-
-                </p><input type="submit" value="Sign up" id="login" /><br/>
-
+                <table>
+                    <tr>
+                        <th>UserName: </th>
+                        <td><input type="text" id="userName" /></td>
+                    </tr>
+                    <tr>
+                        <th>Password: </th>
+                        <td><input type="password" id="password" /></td>
+                    </tr>
+                    <tr><td align="right" colspan="2"><input type="submit" value="Sign up" id="login" /></td></tr>
+                </table>
             </div>
 
         </div>
