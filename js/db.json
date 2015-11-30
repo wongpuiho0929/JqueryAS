@@ -1,16 +1,55 @@
-{"login": [
-    {"id": "1", "username": "admin", "password": "admin","position":"admin"},
-    {"id": "2", "username": "tommy", "password": "123","position":"admin"},
-    {"id": "3", "username": "mary", "password": "123","position":"admin"},
-    {"id": "4", "username": "luke", "password": "123","position":"admin"},
-    {"id": "5", "username": "samuel", "password": "123","position":"admin"}
-	],
- "ticket":[
-		{"hk":[
-			{"place":"TW","price":"1000"},
-			{"place":"Malaysia","price":"1797"},
-			{"place":"Jp","price":"2204"}
-			]
-		}
-	]
+{
+    "login": [
+        {
+            "id": "1",
+            "username": "admin",
+            "password": "admin",
+            "position": "admin"
+        },
+        {
+            "id": "2",
+            "username": "tommy",
+            "password": "123",
+            "position": "admin"
+        },
+        {
+            "id": "3",
+            "username": "mary",
+            "password": "123",
+            "position": "admin"
+        },
+        {
+            "id": "4",
+            "username": "luke",
+            "password": "123",
+            "position": "admin"
+        },
+        {
+            "id": "5",
+            "username": "samuel",
+            "password": "123",
+            "position": "admin"
+        }
+    ],
+    "ticket": [
+        {
+            "hk": [
+                {
+                    "place": "TW",
+                    "price": "1000",
+                    "photo": "images/taiwan.jpg"
+                },
+                {
+                    "place": "Malaysia",
+                    "price": "1797",
+                    "photo": "images/Malaysia.jpg"
+                },
+                {
+                    "place": "Jp",
+                    "price": "2204",
+                    "photo": "images/japan.jpg"
+                }
+            ]
+        }
+    ]
 }

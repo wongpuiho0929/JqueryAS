@@ -1,24 +1,47 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Home page</title>
-<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
-<link rel="stylesheet" type="text/css" href="css/style.css" />
-<link rel="stylesheet" type="text/css" href="css/menu.css" />
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Home page</title>
+        <script type="text/javascript" src="js/1.7.1.jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.simplyscroll.js"></script>
+        <link rel="stylesheet" href="css/jquery.simplyscroll.css" media="all" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
 
-<script>
-	$(document).ready(function() {
-	 $.getJSON('js/db.json',function(jd){
-			console.log(jd.ticket[0].hk[0].place);
-			alert("1");
-		 });
-	});
-</script>
 
-</head>
+        <script>
+            $(document).ready(function () {
+                $.getJSON('js/db.json', function (jd) {
+                    var count = 0;
+                    var s = "";
 
-<body>
+                    for (i in jd.ticket[0].hk) {
+                        if (jd.ticket[0].hk.hasOwnProperty(i)) {
+                            s += "<li><img src='" + jd.ticket[0].hk[i].photo + "' width='290' height='300'></li>";
+                            count++;
+                        }
+                    }
+                    $("#scroller").html(s);
+                    console.log(jd.ticket[0].hk[0].place);
+                    $("#scroller").simplyScroll({pauseOnHover: true});
+                });
+            });
+        </script>
+    </head>
 
-</body>
+    <body>
+        <div id="wrapper">
+            <font size="5">香港直航</font>
+            <br/><br/>
+            <ul id="scroller"style="width: 2030px; height: 250px">
+
+            </ul>
+            <div style="width: 500px;float: left;padding: 0px;margin: 0 10px 0 0;">
+                Flights:
+            </div>
+             <div style="float: left;padding: 0px;margin: 0 10px 0 0;">
+                Hotels:
+            </div>
+        </div>
+    </body>
 </html>
