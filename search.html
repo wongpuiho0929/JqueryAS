@@ -1,28 +1,46 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>無標題文件</title>
-<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
-<script type="text/javascript" src="js/jquery-ui-1.11.4/jquery-ui.js"></script>
- <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.11.4/jquery-ui.css"/>
- 
- <link rel="stylesheet" type="text/css" href="js/DataTables-1.10.10/css/jquery.dataTables.css"/>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>無標題文件</title>
+        <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.11.4/jquery-ui.js"></script>
+        <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.11.4/jquery-ui.css"/>
+
+        <link rel="stylesheet" type="text/css" href="js/DataTables-1.10.10/css/jquery.dataTables.css"/>
         <script type="text/javascript" src="js/DataTables-1.10.10/js/jquery.dataTables.js"></script>
-        
-<script type="text/javascript">
-$(document).ready(function(e) {
-     $("#table").DataTable();
-});
-</script>
 
-</head>
+        <script type="text/javascript">
+            $(document).ready(function (e) {
+                $(".display").DataTable();
+            });
+        </script>
+        <script>
+            $(function () {
+                $("#tabs").tabs();
+            });
 
-<body>
-<table id='table' class='display' cellspacing='0' width='100%'>
-        <thead><tr><th>UserId</th><th>Post</th><th>Username</th><th>Password</th><th>Name</th><th>Address</th><th>Tel</th><th>Credit Amount($)</th><th>Point</th><th>Action</th></tr></thead>
-        <tbody></tbody>
-        </table>
+        </script>
+    </head>
 
-</body>
+    <body>
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Flights</a></li>
+                <li><a href="#tabs-2">Hotels</a></li>
+            </ul>
+            <div id="tabs-1">
+                <table id='flights_table' class='display' cellspacing='0' width='100%'>
+                    <thead><tr><th>Flight Id</th><th>From</th><th>To</th><th>Date</th><th>Time</th><th>Price</th><th>Company</th><th>Action</th></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="tabs-2">
+                <table id='hotels_table' class='display' cellspacing='0' width='100%'>
+                    <thead><tr><th>Hotel Id</th><th>Name</th><th>Location</th><th>Address</th><th>Price</th><th>Action</th></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </body>
 </html>

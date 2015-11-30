@@ -1,92 +1,90 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>BestTrip Travel Agency</title>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>BestTrip Travel Agency</title>
 
-<link rel="stylesheet" type="text/css" href="css/style.css" />
-<link rel="stylesheet" type="text/css" href="css/menu.css" />
-<script type="text/javascript" src="js/jquery-latest.min.js">
-</script>
-	<script >
-		$(function(){
-	
-	$('#menu li').hover(function(){	
-		var _this = $(this),
-			_subnav = _this.children('ul');
-		_this.css('backgroundColor', '#fff');
-		_subnav.stop(true, true).fadeIn(400);
-	} , function(){
-		$(this).css('backgroundColor', '').children('ul').stop(true, true).fadeOut(400);
-	});
-	$('a').focus(function(){
-		this.blur();
-	});
-});
-</script>
-<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
-<script>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/menu.css" />
+        <script type="text/javascript" src="js/jquery-latest.min.js">
+        </script>
+        <script >
+            $(function () {
 
-	 $(document).ready(function() {
-		 
-		$("#login").click(function(){
-			var name = $('#userName').val();
-			var password = $("#password").val();
-			try{
-				var storedNames = JSON.parse(localStorage["names"]);
-			}catch(err) {
-   
-			}
-			if(name==""||password==""){
-				alert("Please input userName and Password");
-			}else
-			if(storedNames!=null){
-					for(i=0;i<storedNames.login.length;i++){
-						var chkname = storedNames.login[i].username;
-						var chkpassword = storedNames.login[i].password;
-						if(name==chkname&&password==chkpassword){
-							window.top.location.href='index.html';
+                $('#menu li').hover(function () {
+                    var _this = $(this),
+                            _subnav = _this.children('ul');
+                    _this.css('backgroundColor', '#fff');
+                    _subnav.stop(true, true).fadeIn(400);
+                }, function () {
+                    $(this).css('backgroundColor', '').children('ul').stop(true, true).fadeOut(400);
+                });
+                $('a').focus(function () {
+                    this.blur();
+                });
+            });
+        </script>
+        <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+        <script>
 
-							localStorage.setItem('label', chkname);
-						}
-					}
-			}else{
-				$.getJSON('js/db.json',function(jd){
-					for(i=0;i<jd.login.length;i++){
-						var chkname = jd.login[i].username;
-						var chkpassword = jd.login[i].password;
-						if(name==chkname&&password==chkpassword){
-							window.top.location.href='index.html';
+            $(document).ready(function () {
 
-							localStorage.setItem('label', chkname);
-						}
-					}
-				})
+                $("#login").click(function () {
+                    var name = $('#userName').val();
+                    var password = $("#password").val();
+                    try {
+                        var storedNames = JSON.parse(localStorage["names"]);
+                    } catch (err) {
 
-			}
-		});
-   });
-   </script>
+                    }
+                    if (name == "" || password == "") {
+                        alert("Please input userName and Password");
+                    } else
+                    if (storedNames != null) {
+                        for (i = 0; i < storedNames.login.length; i++) {
+                            var chkname = storedNames.login[i].username;
+                            var chkpassword = storedNames.login[i].password;
+                            if (name == chkname && password == chkpassword) {
+                                window.top.location.href = 'index.html';
 
-</head>
+                                localStorage.setItem('label', chkname);
+                            }
+                        }
+                    } else {
+                        $.getJSON('js/db.json', function (jd) {
+                            for (i = 0; i < jd.login.length; i++) {
+                                var chkname = jd.login[i].username;
+                                var chkpassword = jd.login[i].password;
+                                if (name == chkname && password == chkpassword) {
+                                    window.top.location.href = 'index.html';
 
-<body>
-	
-    <H1>Login:</H1>
-    <div style="padding:10px">
-    	<div class="input_field">
-        	<table>
-            	<tr><th align="right">UserName: </th><td>
-           	  <input type="text" id="userName" /></td></tr>
-                <tr><th align="right">Password: </th><td>
-              <input type="password" id="password" /></td></tr>
-                
-                <tr><td align="right" colspan="2"><input type="submit" value="Login" id="login" /></td></tr>
-        </table>
-      </div>
-        
-    </div>
-    	
-	
-</body>
+                                    localStorage.setItem('label', chkname);
+                                }
+                            }
+                        })
+
+                    }
+                });
+            });
+        </script>
+
+    </head>
+
+    <body>
+
+        <div style="padding:10px">
+            <div class="input_field">
+                <table>
+                    <tr><th align="right">UserName: </th><td>
+                            <input type="text" id="userName" /></td></tr>
+                    <tr><th align="right">Password: </th><td>
+                            <input type="password" id="password" /></td></tr>
+                    <tr><td align="right" colspan="2"><input type="submit" value="Login" id="login" /></td></tr>
+                </table>
+            </div>
+
+        </div>
+
+
+    </body>
 </html>
