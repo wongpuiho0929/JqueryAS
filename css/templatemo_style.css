@@ -474,3 +474,17 @@ h6 {
 #templatemo_footer a {
     color: #999; 
 }
+
+
+.mainDiv{
+    position:absolute; 
+    top: 80px; 
+    bottom: 10px;
+    /*    width:100%;*/
+    
+    right: 120px;
+    left: 120px;
+    /*align:center;*/
+    /*    margin-left: 120px;
+        margin-right: 120px;*/
+}
