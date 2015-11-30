@@ -40,31 +40,58 @@
                     var password = $("#password").val();
                     if (name == "" || password == "") {
                         alert("Please input userName and Password");
-                    } else {
-                        if (localStorage["db"] != null) {
+                        $("#leftphoto").html("<img src='images/welcome3.png' id='leftphot'/>");
+                        $("#rightphoto").html("<img src='images/welcome4.png' id='rightphoto'/>");
+                    } else
+                    if (localStorage["db"] != null) {
+                        try {
+                            var JSONdb = JSON.parse(localStorage["db"]);
+                        } catch (err) {
 
-                            try {
-                                var JSONdb = JSON.parse(localStorage["db"]);
-                            } catch (err) {
-
+                        }
+                        for (var t = 0; t < JSONdb.login.length; t++) {
+                            var chkname = true;
+                            if (JSONdb.login[t].username == name) {
+                                chkname = false;
+                                alert("Already have this user");
+                                $("#leftphoto").html("<img src='images/welcome3.png' id='leftphot'/>");
+                                $("#rightphoto").html("<img src='images/welcome4.png' id='rightphoto'/>");
+                                break;
                             }
+                        }
+
+                        if (chkname) {
                             var i = JSONdb.login.length + 1;
                             JSONdb.login.push({"id": i, "username": name, "password": password, "position": "admin"});
                             localStorage["db"] = JSON.stringify(JSONdb);
                             alert("Successful");
                             console.log(localStorage.getItem("db"));
                             window.top.location.href = "index.html";
-                        } else {
-                            $.getJSON('js/db.json', function (jd) {
+                        }
+
+                    } else {
+                        $.getJSON('js/db.json', function (jd) {
+                            var chkname = true;
+                            for (var t = 0; t < jd.login.length; t++) {
+                                if (jd.login[t].username == name) {
+                                    chkname = false;
+                                    alert("Already have this user");
+                                    $("#leftphoto").html("<img src='images/welcome3.png' id='leftphot'/>");
+                                    $("#rightphoto").html("<img src='images/welcome4.png' id='rightphoto'/>");
+                                    break;
+                                }
+                            }
+                            if (chkname) {
                                 var i = jd.login.length + 1;
                                 jd['login'].push({"id": i, "username": name, "password": password, "position": "admin"});
                                 alert("Successful");
                                 localStorage["db"] = JSON.stringify(jd);
                                 console.log(localStorage["db"]);
                                 window.top.location.href = "index.html";
-                            });
-                        }
+                            }
+                        });
                     }
+
 
                 });
                 (function () {
@@ -89,7 +116,6 @@
                         inputEl.addEventListener('focus', onInputFocus);
                         inputEl.addEventListener('blur', onInputBlur);
                     });
-
                     function onInputFocus(ev) {
                         classie.add(ev.target.parentNode, 'input--filled');
                     }
@@ -106,15 +132,15 @@
     </head>
 
     <body>
-        
-            
-        
+
+
+
         <center><div style="background-color: #f8fdfd; width: 800px;" >
                 Quick sign up:
                 <table >
-                    
+
                     <tr>
-                        <td rowspan="4"><img src="images/welcome.png"/></td>
+                        <td rowspan="4" id="leftphoto"><img src="images/welcome.png"/></td>
                         <td>
                             <span class="input input--hoshi">
                                 <input class="input__field input__field--hoshi" type="text" id="userName">
@@ -123,7 +149,7 @@
                                     </label>
                             </span>
                         </td>
-                        <td rowspan="4"><img src="images/welcome2.png"/></td>
+                        <td rowspan="4" id="rightphoto"><img src="images/welcome2.png" /></td>
                     </tr>
                     <tr>
 
@@ -138,7 +164,7 @@
                     </tr>
                     <tr><th ><input type="checkbox" id="chkbox"/><a href="Terms_and_conditions.html" target="_blank">Terms and conditions</a></th></tr>
                     <tr><td align="right"><input type="submit" value="Sign up" id="Register" style="background-color: #e4fefe"/></td></tr>
-                
+
                 </table>
                 <div class="h40"></div>
             </div>
