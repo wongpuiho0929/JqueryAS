@@ -15,14 +15,14 @@
                     var count = 0;
                     var s = "";
 
-                    for (i in jd.ticket[0].hk) {
-                        if (jd.ticket[0].hk.hasOwnProperty(i)) {
-                            s += "<li><img src='" + jd.ticket[0].hk[i].photo + "' width='290' height='300'></li>";
+                    for (i in jd.flight[0].hk) {
+                        if (jd.flight[0].hk.hasOwnProperty(i)) {
+                            s += "<li><img src='" + jd.flight[0].hk[i].photo + "' width='290' height='300'></li>";
                             count++;
                         }
                     }
                     $("#scroller").html(s);
-                    console.log(jd.ticket[0].hk[0].place);
+                    console.log(jd.flight[0].hk[0].place);
                     $("#scroller").simplyScroll({pauseOnHover: true});
                 });
             });
