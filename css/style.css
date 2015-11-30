@@ -140,7 +140,7 @@ h6 {
 #wrapper {
     width: 960px;
     margin: 0 auto;
-    padding: 0 10px 10px;
+    padding: 5px 10px 10px;
 }
 
 #header {
@@ -478,10 +478,14 @@ h6 {
     top: 100px; 
     bottom: 10px;
     /*    width:100%;*/
+    width: 960px;
     
-    right: 120px;
-    left: 120px;
     /*align:center;*/
     /*    margin-left: 120px;
         margin-right: 120px;*/
+}
+
+#frame {
+    overflow-x:hidden;
+    
 }
