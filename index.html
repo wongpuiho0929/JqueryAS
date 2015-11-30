@@ -1,68 +1,66 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>BestTrip Travel Agency</title>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>BestTrip Travel Agency</title>
 
-<link rel="stylesheet" type="text/css" href="css/templatemo_style.css" />
-<link rel="stylesheet" type="text/css" href="css/menu.css" />
-<script type="text/javascript" src="js/jquery-latest.min.js"/></script>
-<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
-	<script type="text/javascript">
-		$(function(){
-	
-	$('#menu li').hover(function(){	
-		var _this = $(this),
-			_subnav = _this.children('ul');
-		_this.css('backgroundColor', '#fff');
-		_subnav.stop(true, true).fadeIn(400);
-	} , function(){
-		$(this).css('backgroundColor', '').children('ul').stop(true, true).fadeOut(400);
-	});
-	$('a').focus(function(){
-		this.blur();
-	});
-});
-	$(document).ready(function() {
-		if(localStorage.getItem('label')!=null){
-			$('#header_right').html(localStorage.getItem('label')+"|<a href='logout.html'>logout</a>");
-		}
-		
-	});
-	
-</script>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/menu.css" />
+        <script type="text/javascript" src="js/jquery-latest.min.js"/></script>
+        <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+        <script type="text/javascript">
+            $(function () {
 
-</head>
+                $('#menu li').hover(function () {
+                    var _this = $(this),
+                            _subnav = _this.children('ul');
+                    _this.css('backgroundColor', '#fff');
+                    _subnav.stop(true, true).fadeIn(400);
+                }, function () {
+                    $(this).css('backgroundColor', '').children('ul').stop(true, true).fadeOut(400);
+                });
+                $('a').focus(function () {
+                    this.blur();
+                });
+            });
+            $(document).ready(function () {
+                if (localStorage.getItem('label') != null) {
+                    $('#header_right').html(localStorage.getItem('label') + "|<a href='logout.html'>logout</a>");
+                }
 
-<body>
-<div id="templatemo_wrapper">
-<div id="templatemo_header">
-	<div id="site_title">
-		<h1><a href="index.html"></a></h1>
-	</div>
-	<div id="header_right">
-    	<a target="frame" href="login.html" id="chklogin">Login</a>
-        |
-        <a target="frame" href="register.html">Register</a>
-    </div>
-    <div class="cleaner"></div>
-</div>
-<div>
-        <ul id="menu">
-            <li><a target="frame" href="home.html">Home</a></li>
-            <li><a target="frame" href="flights.html">Flights</a>
-            </li><li><a target="frame" href="hotels.html">Hotels</a>
-            </li>
-            <li><a target="frame" href="search.html" >Search</a></li>
-            <li><a target="frame" href="checkout.html" >Checkout</a></li>
-        </ul>
-		<br style="clear: left" />
-    </div>
+            });
 
-<br /><br /><br />
+        </script>
 
-    <iframe id="frame" name="frame" width="100%" height="100%"  src="home.html" frameBorder="0"></iframe>
-</div>
-	  
-</body>
+    </head>
+
+    <body>
+        <div id="wrapper">
+            <div id="header">
+                <div id="site_title">
+                    <h1><a href="index.html"></a></h1>
+                </div>
+                <div id="header_right">
+                    <a target="frame" href="login.html" id="chklogin">Login</a>
+                    |
+                    <a target="frame" href="register.html">Register</a>
+                </div>
+                <div class="cleaner"></div>
+            </div>
+            <div>
+                <ul id="menu">
+                    <li><a target="frame" href="home.html">Home</a></li>
+                    <li><a target="frame" href="flights.html">Flights</a></li>
+                    <li><a target="frame" href="hotels.html">Hotels</a></li>
+                    <li><a target="frame" href="search.html" >Search</a></li>
+                    <li><a target="frame" href="checkout.html" >Checkout</a></li>
+                </ul>
+                <br style="clear: left" />
+            </div>
+            <div class="mainDiv">
+            <iframe id="frame" name="frame" width="100%" height="100%"  src="home.html" frameBorder="0"></iframe>
+            </div>
+        </div>
+
+    </body>
 </html>
