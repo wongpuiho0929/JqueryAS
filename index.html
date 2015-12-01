@@ -27,7 +27,7 @@
             });
             $(document).ready(function () {
                 if (localStorage.getItem('label') != null) {
-                    $('#header_right').html(localStorage.getItem('label') + "|<a href='logout.html' style='padding-right: 80px'>logout</a>");
+                    $('#header_right').html(localStorage.getItem('label') + "|<a href='logout.html'>logout</a>");
                     new jBox('Notice', {
                         content: 'Welcome,' + localStorage.getItem('label'),
                     });
@@ -94,7 +94,9 @@
                        <tr><td hegith=1></td></tr>
                        <tr><th align='right'>Password: </th><td>
                        <input type='password' id='password' /></td></tr>
-                       </table>">Login | </a>
+
+                       </table>">Login</a> |
+                       
                     <a target="frame" href="register.html">Register</a>
                 </div>
                 <div class="cleaner"></div>

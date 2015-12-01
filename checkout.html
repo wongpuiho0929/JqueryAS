@@ -8,11 +8,37 @@
                 $(".footer").load("footer.html");
             });
         </script>
-        <title>無標題文件</title>
+        <title>checkout</title>
     </head>
 
     <body>
         <div id="wrapper" style="margin-top: 10px">
+
+            <div class="leftpanel" style="line-height: normal; border-right-width: 10px; border-right: #3baae3; border-right-style: solid;" >
+                <img src="images/leftpanel.png" width="170px"/>
+
+                <p align="right">Order</p>
+                <p align="right">Shapping cart</p>
+            </div>
+            <div class="panel" style="float :left; background-color: transparent; padding: 5px;height: auto">
+                <table width="100%" border="1">
+                    <tr><th>Type:</th><th>Name of order:</th><th>Time/Date:</th><th>Price(HKD):</th><th>Total(HKD):</th></tr>
+                    <tr><td height="2px" colspan="5"></td></tr>
+                    <tr><td colspan="5"> <p>Flight(s):</p></td></tr>
+
+                </table>
+                <br/>
+
+                <table width="100%" border="1">
+                    <tr><td colspan="5"> <p>Hotel(s):</p></td></tr>
+                </table>
+            </div>
+            <div style="float: left;width: 680px">
+                <table width="100%">
+                    <tr> <td></td><td></td><td></td><td></td><td align="right"> <input type="submit" value="Confirm"/></td></tr>
+                </table>
+            </div>
+
             <div class="footer"></div>
         </div>
     </body>
