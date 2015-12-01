@@ -136,11 +136,16 @@ h6 {
 .float_l { float: left }
 .float_r { float: right }
 
+.subWrapper {
+    margin-right: -10px;
+}
+
 #wrapper {
     width: 880px;
     margin: 0 auto;
     height: 100%;
     padding-top: 5px;
+    overflow-x:no-content;
 }
 
 #header {
@@ -150,7 +155,7 @@ h6 {
 
 #menu {
     width: 100%;
-/*    height: 77px;*/
+    /*    height: 77px;*/
     margin-bottom: 10px;
     background: url(../images/menu.jpg) repeat-x
 }
@@ -201,8 +206,8 @@ h6 {
     float: right; 
     margin-top: 5px; 
     font-size:20px;
-   
-   
+
+
 }
 
 #header_right a { 
@@ -474,21 +479,24 @@ h6 {
     color: #999; 
 }
 
+div {
+    overflow-x: no-display;
+}
 
 .mainDiv{
     position:absolute; 
     top: 100px; 
     bottom: 10px;
     /*    width:100%;*/
+    overflow-x: no-display;
     width: 880px;   
-    overflow-x: hidden
-    /*align:center;*/
-    /*    margin-left: 120px;
-        margin-right: 120px;*/
+        /*align:center;*/
+        /*    margin-left: 120px;
+            margin-right: 120px;*/
 }
 
 #frame {
-    overflow-x: hidden;
+    overflow-x: no-display;
     text-align: center;
     width: 880px;
     height: 100%;
@@ -503,10 +511,10 @@ h6 {
     width: 680px;
     height: 30px;
     padding: 0px;
-   
+
     font-size: 16px;
     color: #0ec4f7;
-    
+
 }
 
 .panel-body {
@@ -531,5 +539,5 @@ h6 {
 
 .warning img {
     vertical-align:text-bottom;
-    
 }
+

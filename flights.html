@@ -12,11 +12,11 @@
                 $(".footer").load("footer.html");
                 $.getJSON('js/db.json', function (jd) {
                     s = "";
-                    for (i in jd.flight[0].hk) {
+                    for (var i in jd.flight[0].hk) {
                         if (jd.flight[0].hk.hasOwnProperty(i)) {
                             s += "<div id='"+jd.flight[0].hk[i].place+"' class='flightCard'><h3>" + jd.flight[0].hk[i].place + "</h3>";
                             for (var k = 0; k < jd.flight[0].hk[i].company.length; k++) {
-                                s += "<ul><li>" + jd.flight[0].hk[i].company[k].name + "</li>";
+                                s += "<ul class='detail'><li>" + jd.flight[0].hk[i].company[k].name + "</li>";
                                 for (var t = 0; t < jd.flight[0].hk[i].company[k].price.length; t++) {
                                     s += "<li>Price: (HKD)" + jd.flight[0].hk[i].company[k].price[t];
                                     s += " Time: " + jd.flight[0].hk[i].company[k].time[t] + "</li>";
@@ -39,7 +39,7 @@
         <!--        <div id="plain" style="position:absolute;">
                     <img src="images/plain.png" width="200" height="200" >
                 </div>-->
-        <div id="wrapper" style="margin-top: 10px">
+        <div id="wrapper" class='subWrapper' style="margin-top: 10px">
             <div id="newFlight">
             </div>
 
