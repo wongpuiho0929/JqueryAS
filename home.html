@@ -7,6 +7,7 @@
         <script type="text/javascript" src="js/jquery.simplyscroll.js"></script>
         <link rel="stylesheet" href="css/jquery.simplyscroll.css" media="all" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="import" id="footerPage" href="footer.html" />
 
 
         <script>
@@ -53,13 +54,13 @@
                                 </table>
                             </div>
                             <div class="panel-new">
-                                 <table>
+                                <table>
                                     <tr><td rowspan="2"><img src="images/new3_80x60.jpg"/></td><td>日本</td></tr>
                                     <tr><td><p>$1200</p></td></tr>
                                 </table>
                             </div>
                             <div class="panel-new">
-                                 <table>
+                                <table>
                                     <tr><td rowspan="2"><img src="images/mew04_80x60.jpg"/></td><td>九州</td></tr>
                                     <tr><td><p>$300</p></td></tr>
                                 </table>
@@ -82,15 +83,11 @@
                     <tr><td>印度</td></tr>
                 </table>
             </div>
-
-            <div id="footer">
-                <hr/>
-                <p>
-                    <a href="index.html">Home</a> | <a href="flights.html">Flights</a> |  <a href="hotels.html">Hotels</a> |  <a href="search.html">Search</a> |  <a href="ceckout.html">Checkout</a>
-                </p>
-
-                Copyright © 2015 <a href="index.jsp">BestTrip Travel</a>
-            </div>
+            <script>
+                var getImport = document.querySelector('#footerPage');
+                var getContent = getImport.import.querySelector('.footer');
+                $("#wrapper").append(document.importNode(getContent, true));
+            </script>
         </div>
     </body>
 </html>

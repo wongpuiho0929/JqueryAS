@@ -128,14 +128,17 @@
                 })();
             });
         </script>
-
+        <link rel="import" id="footerPage" href="footer.html" />
+        <script>
+            var getImport = document.querySelector('#footerPage');
+            var getContent = getImport.import.querySelector('.footer');
+            $("#wrapper").append(document.importNode(getContent, true));
+        </script>
     </head>
 
     <body>
 
-
-
-        <center><div style="background-color: #f8fdfd; width: 800px;" >
+        <center><div style="background-color: #F1F2F3; width: 800px;" >
                 Quick sign up:
                 <table >
 
