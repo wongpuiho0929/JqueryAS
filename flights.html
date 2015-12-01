@@ -4,6 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
         <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/FlightCard.css" />
         <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
         <title>Flights</title>
         <script>
@@ -13,7 +14,7 @@
                     s = "";
                     for (i in jd.flight[0].hk) {
                         if (jd.flight[0].hk.hasOwnProperty(i)) {
-                            s += "<ul><h3>" + jd.flight[0].hk[i].place + "</h3>";
+                            s += "<div id='"+jd.flight[0].hk[i].place+"' class='flightCard'><h3>" + jd.flight[0].hk[i].place + "</h3>";
                             for (var k = 0; k < jd.flight[0].hk[i].company.length; k++) {
                                 s += "<ul><li>" + jd.flight[0].hk[i].company[k].name + "</li>";
                                 for (var t = 0; t < jd.flight[0].hk[i].company[k].price.length; t++) {
@@ -22,7 +23,7 @@
                                 }
                                 s += "</ul>";
                             }
-                            s += "</ul>";
+                            s += "</div>";
                         }
                     }
                     $("#newFlight").append(s)
