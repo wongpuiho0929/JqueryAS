@@ -2,13 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
-        <link rel="import" id="footerPage" href="footer.html" />
+        <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
         <script type="text/javascript">
             $(document).ready(function (e) {
-                var getImport = document.querySelector('#footerPage');
-                var getContent = getImport.import.querySelector('.footer');
-                $("#wrapper").append(document.importNode(getContent, true));
+                $(".footer").load("footer.html");
                 $(".display").DataTable();
             });
         </script>
@@ -17,7 +14,7 @@
 
     <body>
         <div id="wrapper" style="margin-top: 10px">
-
+            <div class="footer"></div>
         </div>
     </body>
 </html>

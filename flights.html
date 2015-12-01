@@ -4,13 +4,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
         <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <script src="js/jquery-1.11.3.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
         <title>Flights</title>
         <script>
             $(document).ready(function () {
-                var getImport = document.querySelector('#footerPage');
-                var getContent = getImport.import.querySelector('.footer');
-                $("#wrapper").append(document.importNode(getContent, true));
+                $(".footer").load("footer.html");
                 $.getJSON('js/db.json', function (jd) {
                     s = "";
                     for (i in jd.flight[0].hk) {
@@ -45,10 +43,7 @@
             </div>
 
             <div class="h50"></div>
-            <link rel="import" id="footerPage" href="footer.html" />
-            <script>
-
-            </script>
+            <div class="footer"></div>
         </div>
     </body>
 </html>
