@@ -7,9 +7,7 @@
         <script type="text/javascript" src="js/jquery.simplyscroll.js"></script>
         <link rel="stylesheet" href="css/jquery.simplyscroll.css" media="all" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <link rel="import" id="footerPage" href="footer.html" />
-
-
+        
         <script>
             $(document).ready(function () {
                 $(".footer").load("footer.html");
@@ -25,7 +23,9 @@
                     }
                     $("#scroller").html(s);
                     console.log(jd.flight[0].hk[0].place);
-                    $("#scroller").simplyScroll({pauseOnHover: true});
+                    $("#scroller").simplyScroll({
+                        pauseOnHover: true
+                    });
                 });
             });
         </script>
@@ -73,13 +73,13 @@
             <div style="float: left;padding: 0px;margin: 0 10px ; background-color: #ffffcc">
                 <table>
                     <tr><td colspan='2'><a href="http://www.sb.gov.hk/chi/ota/">外遊警示:</a></td></tr>
-                    <tr><td>黑色警示<img src="images/black_dot.gif"></td><td>敘利亞</td></tr>
+                    <tr><td class="warning">黑色警示 <img style="alignment-adjust: baseline" src="images/black_dot.gif"></td><td>敘利亞</td></tr>
                     <tr><td height="2.5"></td></tr>
-                    <tr><td rowspan="3">紅色警示<img src="images/red_dot.gif"></td><td>尼泊爾</td></tr>
+                    <tr><td class="warning" rowspan="3">紅色警示 <img src="images/red_dot.gif"></td><td>尼泊爾</td></tr>
                     <tr><td>黎巴嫩</td></tr>
                     <tr><td>埃及</td></tr>
                     <tr><td height="2.5"></td></tr>
-                    <tr><td rowspan="3">黃色警示<img src="images/amber_dot.gif"></td><td>馬來西亞</td></tr>
+                    <tr><td  class="warning" rowspan="3">黃色警示 <img src="images/amber_dot.gif"></td><td>馬來西亞</td></tr>
                     <tr><td>法國</td></tr>
                     <tr><td>印度</td></tr>
                 </table>

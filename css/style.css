@@ -144,7 +144,7 @@ h6 {
 }
 
 #header {
-    width: 100%;
+    width: 880px;
     padding: 20px 0 10px;
 }
 
@@ -521,4 +521,15 @@ h6 {
     font-size: 12px;
 }
 
+.simply-scroll {
+    width: 880px;
+}
 
+.simply-scroll .simply-scroll-clip {
+    width: 880px;
+}
+
+.warning img {
+    vertical-align:text-bottom;
+    
+}
