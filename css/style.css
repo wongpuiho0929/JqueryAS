@@ -521,4 +521,12 @@ h6 {
     font-size: 12px;
 }
 
-
+.leftpanel{
+    width:160px;
+    height: 400px;
+    float :left;
+    padding : 5px;
+    font-size : 15px;
+    color: #0ec4f7;
+    float: left;
+}
