@@ -6,30 +6,37 @@
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <link rel="stylesheet" type="text/css" href="css/FlightCard.css" />
         <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.11.4/jquery-ui.js"></script>
+        <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.11.4/jquery-ui.css"/>
+        <link rel="stylesheet" type="text/css" href="js/DataTables-1.10.10/css/jquery.dataTables.css"/>
+        <script type="text/javascript" src="js/DataTables-1.10.10/js/jquery.dataTables.js"></script>
         <title>Flights</title>
         <script>
             $(document).ready(function () {
                 $(".footer").load("footer.html");
                 $.getJSON('js/db.json', function (jd) {
-                    s = "";
-                    for (var i in jd.flight[0].hk) {
-                        if (jd.flight[0].hk.hasOwnProperty(i)) {
-                            s += "<div id='"+jd.flight[0].hk[i].place+"' class='flightCard'><h3>" + jd.flight[0].hk[i].place + "</h3>";
-                            for (var k = 0; k < jd.flight[0].hk[i].company.length; k++) {
-                                s += "<ul class='detail'><li>" + jd.flight[0].hk[i].company[k].name + "</li>";
-                                for (var t = 0; t < jd.flight[0].hk[i].company[k].price.length; t++) {
-                                    s += "<li>Time: " + jd.flight[0].hk[i].company[k].time[t];
-                                    s += " Price: (HKD)" + jd.flight[0].hk[i].company[k].price[t] + "</li>";
-                                }
-                                s += "</ul>";
+                    var row = "";
+                    for (var i = 0; i < jd.flight[0].hk.length; i++) {
+                        for (var j = 0; j < jd.flight[0].hk[i].company.length; j++) {
+                            for (var k = 0; k < jd.flight[0].hk[i].company[j].price.length; k++) {
+                                var companyName = jd.flight[0].hk[i].company[j].name;
+                                var time = jd.flight[0].hk[i].company[j].time[k];
+                                var price = jd.flight[0].hk[i].company[j].price[k];
+                                var toPlace = jd.flight[0].hk[i].place;
+                                var fromPlace = "HK";
+
+                                row += "<tr><td>" + companyName + "</td><td>" + time + "</td><td>" + fromPlace + "</td><td>" + toPlace + "</td><td>" + price + "</td><td>Add to Shopping Cart</td></tr>";
+
                             }
-                            s += "</div>";
                         }
                     }
-                    $("#newFlight").append(s)
+                    $("#flight_data").append(row);
+                    $(".display").DataTable({
+                        "aoColumnDefs": [
+                            {"bSearchable": false, "aTargets": [5]}
+                        ]});
                 });
-
-                $("#plain").animate({top: '200px', right: '200px'});
+                //$("#plain").animate({top: '200px', right: '200px'});
 
             });
         </script>
@@ -40,8 +47,11 @@
                     <img src="images/plain.png" width="200" height="200" >
                 </div>-->
         <div id="wrapper" class='subWrapper' style="margin-top: 10px">
-            <div id="newFlight">
-            </div>
+            <table id='flights_table' class='display' cellspacing='0' width='100%'>
+                <thead><tr><th>Company</th><th>Time</th><th>From</th><th>To</th><th>Price</th><th>Action</th></tr></thead>
+                <tbody id='flight_data'>
+                </tbody>
+            </table>
 
             <div class="h50"></div>
             <div class="footer"></div>

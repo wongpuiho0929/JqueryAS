@@ -4,9 +4,17 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.11.4/jquery-ui.js"></script>
+        <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.11.4/jquery-ui.css"/>
+        <link rel="stylesheet" type="text/css" href="js/DataTables-1.10.10/css/jquery.dataTables.css"/>
+        <script type="text/javascript" src="js/DataTables-1.10.10/js/jquery.dataTables.js"></script>
         <script type="text/javascript">
             $(document).ready(function (e) {
                 $(".footer").load("footer.html");
+                $(".display").DataTable({
+                    "aoColumnDefs": [
+                        {"bSearchable": false, "aTargets": [4]}
+                    ]});
             });
         </script>
         <title>無標題文件</title>
@@ -14,6 +22,10 @@
 
     <body>
         <div id="wrapper" style="margin-top: 10px">
+            <table id='hotels_table' class='display' cellspacing='0' width='100%'>
+                <thead><tr><th>Name</th><th>Location</th><th>Address</th><th>Price</th><th>Action</th></tr></thead>
+                <tbody></tbody>
+            </table>
             <div class="footer"></div>
         </div>
     </body>
