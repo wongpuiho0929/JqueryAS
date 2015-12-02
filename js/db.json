@@ -32,24 +32,24 @@
         }
     ],
 
-    "Flight":[  
+    "flight":[  
       {  
-         "ID":"asd",
-         "Company":"sss",
-         "From":"HK",
-         "To":"TW",
-         "Date":"21/12/2015",
-         "Time":"22:55",
-         "Price":"1230.0"
+         "id":"taiwan",
+         "company":"sss",
+         "from":"HK",
+         "to":"TW",
+         "date":"21/12/2015",
+         "time":"22:55",
+         "price":"1230.0"
       },
       {  
-         "ID":"QQ333",
-         "Company":"WF",
-         "From":"HK",
-         "To":"BJ",
-         "Date":"21/05/2015",
-         "Time":"03:55",
-         "Price":"3500.0"
+         "iD":"QQ333",
+         "company":"WF",
+         "from":"HK",
+         "to":"BJ",
+         "date":"21/05/2015",
+         "time":"03:55",
+         "price":"3500.0"
       }
    ]
 }

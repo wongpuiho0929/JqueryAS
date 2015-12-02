@@ -7,22 +7,20 @@
         <script type="text/javascript" src="js/jquery.simplyscroll.js"></script>
         <link rel="stylesheet" href="css/jquery.simplyscroll.css" media="all" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
-        
+
         <script>
             $(document).ready(function () {
                 $(".footer").load("footer.html");
                 $.getJSON('js/db.json', function (jd) {
-                    var count = 0;
+
                     var s = "";
 
-                    for (i in jd.flight[0].hk) {
-                        if (jd.flight[0].hk.hasOwnProperty(i)) {
-                            s += "<li><img src='" + jd.flight[0].hk[i].photo + "' width='290' height='300'></li>";
-                            count++;
-                        }
+                    for (i in jd.flight) {
+                        s += "<li><img src='images/" + jd.flight[i].id + ".jpg' width='290' height='300'></li>";
+
                     }
                     $("#scroller").html(s);
-                   
+
                     $("#scroller").simplyScroll({
                         pauseOnHover: true
                     });
