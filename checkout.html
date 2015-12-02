@@ -17,7 +17,7 @@
             try {
                 data = orderInfo.split(",");
             } catch (TypeError) {
-              s+="<tr><td>No record</td></tr>";
+                s += "<tr><td>No record</td></tr>";
             }
 
 
@@ -26,7 +26,7 @@
                 var temp = data.length / 11;
                 var totalprice = 0;
                 for (var i = 0; i < temp; i++) {
-                    var type = data[9+(i*11)];
+                    var type = data[9 + (i * 11)];
                     var company = data[0 + (i * 11)];
                     var from = data[3 + (i * 11)];
                     var to = data[4 + (i * 11)];
@@ -34,7 +34,7 @@
                     var time = data[2 + (i * 11)];
                     var price = data[10 + (i * 11)];
                     totalprice += parseFloat(price);
-                    s += "<tr><td>"+type+"</td>";
+                    s += "<tr><td>" + type + "</td>";
                     s += "<td align=center><font color=#024>" + company + "</font></td>";
                     s += "<td align=center><font size =4>" + from + "</font></td>";
                     s += "<td align=center><font size =4>" + to + "</font></td>";
@@ -50,22 +50,34 @@
                 }
 
                 $("#showFlight").html(s);
+                var a;
+                var b;
                 $("#pay_but").mousedown(function () {
-                    new jBox('Confirm', {
+                    try {
+                        b.destroy();
+                        a.destroy();
+                    } catch (err) {
+                    }
+                    a = new jBox('Confirm', {
                         cancelButton: 'Cancel',
                         confirmButton: 'pay',
                         animation: 'tada'
                     });
+
+
                 });
                 $("#clear_but").mousedown(function () {
-                    new jBox('Confirm', {
+                    try {
+                        a.destroy();
+                        b.destroy();
+                    } catch (err) {
+                    }
+                    b = new jBox('Confirm', {
                         cancelButton: 'Cancel',
                         confirmButton: 'Clear',
                         animation: 'tada'
                     });
                 });
-
-
             });
 
             function Clear() {
@@ -73,9 +85,18 @@
                 localStorage.removeItem("orderNumber");
                 location.reload();
                 window.top.location.reload();
+               
             }
-            
-            
+
+            function Pay() {
+
+                localStorage.removeItem("orderinfo");
+                localStorage.removeItem("orderNumber");
+                location.reload();
+                window.top.location.reload();
+               
+            }
+
         </script>
         <title>checkout</title>
     </head>
@@ -100,7 +121,8 @@
             </div>
             <div style="float: left;width: 680px">
                 <table width="100%">
-                    <tr> <td></td><td></td><td></td><td></td><td align="right"><input id="clear_but" type="submit" onclick="Clear()" data-confirm="Do you want to Clear it?" value="Clear"/><input id="pay_but" type="submit" value="Confirm" data-confirm="Payment?"/></td></tr>
+                    <tr> <td></td><td></td><td></td><td></td><td align="right"><input id="clear_but" type="submit" onclick="Clear()" data-confirm="Do you want to Clear it?" value="Clear"/><input onclick="Pay()" id="pay_but" type="submit" value="Confirm" data-confirm="Payment" style="width: 100px"/></td></tr>
+                    <tr><td colspan="5" align="right"><img src="images/paypal 2.png" width="150px" height="50px"/></td></tr>
                 </table>
             </div>
 
