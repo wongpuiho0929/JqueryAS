@@ -13,19 +13,43 @@
         <script type="text/javascript">
             $(document).ready(function (e) {
                 $(".footer").load("footer.html");
-                $(".display").DataTable();
+                $.getJSON('js/db.json', function (jd) {
+                    var row = "";
+                    for (var i = 0; i < jd.flight[0].hk.length; i++) {
+                        for (var j = 0; j < jd.flight[0].hk[i].company.length; j++) {
+                            for (var k = 0; k < jd.flight[0].hk[i].company[j].price.length; k++) {
+                                var companyName = jd.flight[0].hk[i].company[j].name;
+                                var time = jd.flight[0].hk[i].company[j].time[k];
+                                var price = jd.flight[0].hk[i].company[j].price[k];
+                                var toPlace = jd.flight[0].hk[i].place;
+                                var fromPlace = "HK";
+
+                                row += "<tr><td>" + companyName + "</td><td>" + time + "</td><td>" + fromPlace + "</td><td>" + toPlace + "</td><td>" + price + "</td><td>Add to Shopping Cart</td></tr>";
+
+                            }
+                        }
+                    }
+                    $("#flight_data").append(row);
+                    $("#tabs").tabs();
+                    $(".display").DataTable({
+                        "aoColumnDefs": [
+                            {"bSearchable": false, "aTargets": [5]}
+                        ]});
+                });
+
+
             });
         </script>
         <script>
             $(function () {
-                $("#tabs").tabs();
+
             });
 
         </script>
     </head>
 
     <body>
-        <div id="wrapper" style="margin-top: 10px">
+        <div class='search' style="margin-top: 10px">
             <div id="tabs">
                 <ul>
                     <li><a href="#tabs-1">Flights</a></li>
@@ -33,8 +57,9 @@
                 </ul>
                 <div id="tabs-1">
                     <table id='flights_table' class='display' cellspacing='0' width='100%'>
-                        <thead><tr><th>Flight Id</th><th>From</th><th>To</th><th>Date</th><th>Time</th><th>Price</th><th>Company</th><th>Action</th></tr></thead>
-                        <tbody></tbody>
+                        <thead><tr><th>Company</th><th>Time</th><th>From</th><th>To</th><th>Price</th><th>Action</th></tr></thead>
+                        <tbody id='flight_data'>
+                        </tbody>
                     </table>
                 </div>
                 <div id="tabs-2">
