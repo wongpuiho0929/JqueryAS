@@ -15,12 +15,13 @@
         <title>Flights</title>
         <script>
             var orderinfo = new Array();
+            var temp;
             $(document).ready(function () {
 
                 $("#flights_table").on("click", "tr", function () {
                     try {
                         orderinfo = localStorage.getItem('orderinfo').split(",");
-                        
+
                     } catch (err) {
                     }
                     if (orderinfo == null) {
@@ -44,7 +45,8 @@
                             orderinfo.push(data[i]);
                         }
                     }
-                    var data_confirm = '<table><tr><td colspan="2"><img src="' + pic + '" style="width: 300px;height: 300px;"/></td></tr><tr><th>Company Name : </td><td>' + data[0] + '</td></tr><tr><th>From : </td><td>' + data[3] + '</td></tr><tr><th>To : </td><td>' + data[4] + '</td></tr><tr><th>Date : </th><td>' + data[1] + '</td></tr><tr><th>Time : </td><td>' + data[2] + '</td></tr><tr><th>Price : </td><td>' + data[5] + '</td></tr><tr><th>Quantity : </th><td><input type="number" id="qty" value="1"/></td></tr></table>';
+                    temp = data[5].split(",");
+                    var data_confirm = '<table><tr><td colspan="2"><img src="' + pic + '" style="width: 300px;height: 300px;"/></td></tr><tr><th>Company Name : </td><td>' + data[0] + '</td></tr><tr><th>From : </td><td>' + data[3] + '</td></tr><tr><th>To : </td><td>' + data[4] + '</td></tr><tr><th>Date : </th><td>' + data[1] + '</td></tr><tr><th>Time : </td><td>' + data[2] + '</td></tr><tr><th>Price (First/Business): </td><td>' + '<input type=radio name=a id=1>' + temp[0] + '</input>' + '<input type=radio name=a id=2 checked>' + temp[1] + '</input>' + '</td></tr><tr><th>Quantity : </th><td><input type="number" id="qty" value="1"/></td></tr></table>';
                     $(".detailBox").attr("data-confirm", data_confirm);
                     $(".detailBox").click();
                 });
@@ -62,7 +64,7 @@
                         var price = jd.Flight[i].Price;
                         var toPlace = jd.Flight[i].To;
                         var fromPlace = jd.Flight[i].From;
-                        var pic = "images/" + jd.Flight[i].ID + ".jpg";
+                        var pic = "images/" + jd.Flight[i].To + ".jpg";
                         var date = jd.Flight[i].Date;
                         var dataConfirm = "hi";
                         row += "<tr><td>" + companyName + "</td><td>" + date + "</td><td>" + time + "</td><td>" + fromPlace + "</td><td>" + toPlace + "</td><td>" + price + "</td><td><img style='width:100px;height:100px;' src='" + pic + "' /></td></tr>";
@@ -80,7 +82,13 @@
 
             function order() {
 
-
+                if ($('#1').is(':checked')) {
+                    orderinfo.push("First class");
+                    orderinfo.push(temp[0]);
+                } else {
+                    orderinfo.push("Business class");
+                    orderinfo.push(temp[1]);
+                }
                 console.log(orderinfo);
                 localStorage.setItem('orderinfo', orderinfo);
 

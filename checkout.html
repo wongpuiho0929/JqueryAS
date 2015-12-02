@@ -4,30 +4,41 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+
+        <script src="http://code.jboxcdn.com/0.3.2/jBox.min.js"></script> <!--JBOX!-->
+        <link href="http://code.jboxcdn.com/0.3.2/jBox.css" rel="stylesheet"/><!--JBOX!-->
+
         <script type="text/javascript">
             var orderInfo = localStorage.getItem('orderinfo');
             var data = new Array();
-            data = orderInfo.split(",");
+            var s = "<tr><th>Type:</th><th>Company:</th><th>From:</th><th width=10%>To:</th><th>Date&Time:</th><th>Price(HKD):</th><th>Total(HKD):"
+                    + "</th></tr><tr><td height='2px' colspan='6'></td></tr>"
+                    + "<tr><td colspan='6'> <p>Flight(s):</p></td></tr>";
+            try {
+                data = orderInfo.split(",");
+            } catch (TypeError) {
+              s+="<tr><td>No record</td></tr>";
+            }
+
+
             $(document).ready(function (e) {
                 $(".footer").load("footer.html");
-                var s = "<tr><th>Type:</th><th>Company Name :</th><th>From:</th><th>To:</th><th>Date&Time:</th><th>Price(HKD):</th><th>Total(HKD):"
-                        + "</th></tr><tr><td height='2px' colspan='6'></td></tr>"
-                        + "<tr><td colspan='6'> <p>Flight(s):</p></td></tr>";
-                var temp = data.length / 8;
+                var temp = data.length / 11;
                 var totalprice = 0;
                 for (var i = 0; i < temp; i++) {
-                    var company = data[0 + (i * 8)];
-                    var from =data[3 + (i * 8)];
-                    var to =data[4 + (i * 8 )];
-                    var date = data[1+(i*8)];
-                    var time = data[2 + (i * 8)];
-                    var price = data[5 + (i * 8)];
+                    var type = data[9+(i*11)];
+                    var company = data[0 + (i * 11)];
+                    var from = data[3 + (i * 11)];
+                    var to = data[4 + (i * 11)];
+                    var date = data[1 + (i * 11)];
+                    var time = data[2 + (i * 11)];
+                    var price = data[10 + (i * 11)];
                     totalprice += parseFloat(price);
-                    s += "<tr><td></td>";
-                    s += "<td align=center><font color=#024>" + company +"</font></td>";
-                    s += "<td align=center><font size =4>"+from+"</font></td>";
-                    s += "<td align=center><font size =4>"+to+"</font></td>";
-                    s += "<td align=center><font color=#F00>" + date +"</font> <font color=#024>&</font> <font color=#F00>"+ time +"</font></td>";
+                    s += "<tr><td>"+type+"</td>";
+                    s += "<td align=center><font color=#024>" + company + "</font></td>";
+                    s += "<td align=center><font size =4>" + from + "</font></td>";
+                    s += "<td align=center><font size =4>" + to + "</font></td>";
+                    s += "<td align=center><font color=#F00>" + date + "</font> <font color=#024>&</font> <font color=#F00>" + time + "</font></td>";
                     s += "<td align=center>" + price + "</td>";
                     if (i == temp - 1) {
                         s += "<td align=center>" + totalprice + "</td></tr>"
@@ -35,13 +46,34 @@
                     } else {
                         s += "</tr>"
                     }
-                  
+
                 }
-              
-                $("#showFlight").html(s)
+
+                $("#showFlight").html(s);
+                $("#pay_but").mousedown(function () {
+                    new jBox('Confirm', {
+                        cancelButton: 'Cancel',
+                        confirmButton: 'pay',
+                        animation: 'tada'
+                    });
+                });
+                $("#clear_but").mousedown(function () {
+                    new jBox('Confirm', {
+                        cancelButton: 'Cancel',
+                        confirmButton: 'Clear',
+                        animation: 'tada'
+                    });
+                });
+
+
             });
 
-            console.log(data);
+            function Clear() {
+                localStorage.removeItem("orderinfo");
+                location.reload();
+            }
+            
+            
         </script>
         <title>checkout</title>
     </head>
@@ -66,7 +98,7 @@
             </div>
             <div style="float: left;width: 680px">
                 <table width="100%">
-                    <tr> <td></td><td></td><td></td><td></td><td align="right"> <input type="submit" value="Confirm"/></td></tr>
+                    <tr> <td></td><td></td><td></td><td></td><td align="right"><input id="clear_but" type="submit" onclick="Clear()" data-confirm="Do you want to Clear it?" value="Clear"/><input id="pay_but" type="submit" value="Confirm" data-confirm="Payment?"/></td></tr>
                 </table>
             </div>
 
