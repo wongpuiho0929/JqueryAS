@@ -10,19 +10,24 @@
             data = orderInfo.split(",");
             $(document).ready(function (e) {
                 $(".footer").load("footer.html");
-                var s = "<tr><th>Type:</th><th>Name of order:</th><th>Date&Time:</th><th>Price(HKD):</th><th>Total(HKD):"
-                        + "</th></tr><tr><td height='2px' colspan='5'></td></tr>"
-                        + "<tr><td colspan='5'> <p>Flight(s):</p></td></tr>";
+                var s = "<tr><th>Type:</th><th>Company Name :</th><th>From:</th><th>To:</th><th>Date&Time:</th><th>Price(HKD):</th><th>Total(HKD):"
+                        + "</th></tr><tr><td height='2px' colspan='6'></td></tr>"
+                        + "<tr><td colspan='6'> <p>Flight(s):</p></td></tr>";
                 var temp = data.length / 8;
                 var totalprice = 0;
                 for (var i = 0; i < temp; i++) {
-                    var name = data[0 + (i * 8)] + "--From " + data[3 + (i * 8)] + " To " + data[4 + (i * 8 )];
-                    var time = data[1+(i*8)]+" & "+data[2 + (i * 8)];
+                    var company = data[0 + (i * 8)];
+                    var from =data[3 + (i * 8)];
+                    var to =data[4 + (i * 8 )];
+                    var date = data[1+(i*8)];
+                    var time = data[2 + (i * 8)];
                     var price = data[5 + (i * 8)];
                     totalprice += parseFloat(price);
                     s += "<tr><td></td>";
-                    s += "<td align=center>" + name + "</td>";
-                    s += "<td align=center>" + time + "</td>";
+                    s += "<td align=center><font color=#024>" + company +"</font></td>";
+                    s += "<td align=center><font size =4>"+from+"</font></td>";
+                    s += "<td align=center><font size =4>"+to+"</font></td>";
+                    s += "<td align=center><font color=#F00>" + date +"</font> <font color=#024>&</font> <font color=#F00>"+ time +"</font></td>";
                     s += "<td align=center>" + price + "</td>";
                     if (i == temp - 1) {
                         s += "<td align=center>" + totalprice + "</td></tr>"
@@ -30,9 +35,9 @@
                     } else {
                         s += "</tr>"
                     }
-                    console.log(name + time + price);
+                  
                 }
-                console.log(s);
+              
                 $("#showFlight").html(s)
             });
 
@@ -55,7 +60,7 @@
                 </table>
                 <br/>
 
-                <table width="100%" border="1">
+                <table width="100%">
                     <tr><td colspan="5"> <p>Hotel(s):</p></td></tr>
                 </table>
             </div>
