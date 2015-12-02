@@ -10,15 +10,15 @@
             data = orderInfo.split(",");
             $(document).ready(function (e) {
                 $(".footer").load("footer.html");
-                var s = "<tr><th>Type:</th><th>Name of order:</th><th>Time/Date:</th><th>Price(HKD):</th><th>Total(HKD):"
+                var s = "<tr><th>Type:</th><th>Name of order:</th><th>Date&Time:</th><th>Price(HKD):</th><th>Total(HKD):"
                         + "</th></tr><tr><td height='2px' colspan='5'></td></tr>"
                         + "<tr><td colspan='5'> <p>Flight(s):</p></td></tr>";
-                var temp = data.length / 7;
+                var temp = data.length / 8;
                 var totalprice = 0;
                 for (var i = 0; i < temp; i++) {
-                    var name = data[0 + (i * 7)] + "--From " + data[2 + (i * 7)] + " To " + data[3 + (i * 7)];
-                    var time = data[1 + (i * 7)];
-                    var price = data[4 + (i * 7)];
+                    var name = data[0 + (i * 8)] + "--From " + data[3 + (i * 8)] + " To " + data[4 + (i * 8 )];
+                    var time = data[1+(i*8)]+" & "+data[2 + (i * 8)];
+                    var price = data[5 + (i * 8)];
                     totalprice += parseFloat(price);
                     s += "<tr><td></td>";
                     s += "<td align=center>" + name + "</td>";

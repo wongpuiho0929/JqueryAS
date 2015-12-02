@@ -39,14 +39,14 @@
                 $(".footer").load("footer.html");
                 $.getJSON('js/db.json', function (jd) {
                     var row = "";
-                    for (var i = 0; i < jd.flight.length; i++) {
-                        var companyName = jd.flight[i].company;
-                        var time = jd.flight[i].time;
-                        var price = jd.flight[i].price;
-                        var toPlace = jd.flight[i].to;
-                        var fromPlace = jd.flight[i].from;
-                        var pic = "images/"+jd.flight[i].id+".jpg";
-                        var date = jd.flight[i].date;
+                    for (var i = 0; i < jd.Flight.length; i++) {
+                        var companyName = jd.Flight[i].Company;
+                        var time = jd.Flight[i].Time;
+                        var price = jd.Flight[i].Price;
+                        var toPlace = jd.Flight[i].To;
+                        var fromPlace = jd.Flight[i].From;
+                        var pic = "images/"+jd.Flight[i].ID+".jpg";
+                        var date = jd.Flight[i].Date;
                         var dataConfirm = "hi";
                         row += "<tr><td>" + companyName + "</td><td>"+date+"</td><td>" + time + "</td><td>" + fromPlace + "</td><td>" + toPlace + "</td><td>" + price + "</td><td><img style='width:100px;height:100px;' src='" + pic + "' /></td></tr>";
                     }
