@@ -16,6 +16,7 @@
         <script>
             var orderinfo = new Array();
             var temp;
+            var counter =0;
             $(document).ready(function () {
 
                 $("#flights_table").on("click", "tr", function () {
@@ -81,7 +82,7 @@
             });
 
             function order() {
-
+                
                 if ($('#1').is(':checked')) {
                     orderinfo.push("First class");
                     orderinfo.push(temp[0]);
@@ -91,6 +92,12 @@
                 }
                 console.log(orderinfo);
                 localStorage.setItem('orderinfo', orderinfo);
+                if(localStorage.getItem('orderNumber') != null){
+                    counter = localStorage.getItem('orderNumber');
+                }
+                counter++;
+                localStorage.setItem('orderNumber',counter);
+                window.top.location.reload();
 
             }
         </script>

@@ -70,7 +70,9 @@
 
             function Clear() {
                 localStorage.removeItem("orderinfo");
+                localStorage.removeItem("orderNumber");
                 location.reload();
+                window.top.location.reload();
             }
             
             

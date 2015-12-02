@@ -26,14 +26,15 @@
                 });
             });
             $(document).ready(function () {
-                if (localStorage.getItem('label') !== null) {
+                if (localStorage.getItem('label') != null) {
                     $('#header_right').html(localStorage.getItem('label') + "|<a href='logout.html'>logout</a>");
                     new jBox('Notice', {
                         content: 'Welcome,' + localStorage.getItem('label'),
                     });
                 }
-
-
+                if (localStorage.getItem('orderNumber') != null) {
+                    $('#checkoutNumber').html("Checkout("+localStorage.getItem('orderNumber')+")");
+                }
                 new jBox('Confirm', {
                     cancelButton: 'Cancel',
                     confirmButton: 'Login',
@@ -45,7 +46,7 @@
                 var password = $("#password").val();
                 try {
                     var JSONdb = JSON.parse(localStorage["db"]);
-                   
+
                 } catch (err) {
                 }
                 if (name === "" || password === "") {
@@ -94,7 +95,7 @@
                        <input type='password' id='password' /></td></tr>
 
                        </table>">Login</a> |
-                       
+
                     <a target="frame" href="register.html">Register</a>
                 </div>
                 <div class="cleaner"></div>
@@ -104,7 +105,7 @@
                     <li><a target="frame" href="home.html">Home</a></li>
                     <li><a target="frame" href="flights.html">Flights</a></li>
                     <li><a target="frame" href="hotels.html">Hotels</a></li>
-                    <li><a target="frame" href="checkout.html" >Checkout</a></li>
+                    <li><a target="frame" href="checkout.html" id ="checkoutNumber">Checkout</a></li>
                 </ul>
                 <br style="clear: left" />
             </div>
