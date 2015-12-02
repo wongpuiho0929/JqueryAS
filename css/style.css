@@ -487,6 +487,10 @@ div {
     overflow-x: no-display;
 }
 
+#flight_data tr td {
+    text-align: center;
+}
+
 .mainDiv{
     position:absolute; 
     top: 100px; 
