@@ -560,7 +560,7 @@ div {
     margin-right: 10px;
 }
 
-.warning img {
-    vertical-align:text-bottom;
+.warning {
+    vertical-align: top;
 }
 
