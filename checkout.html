@@ -5,9 +5,38 @@
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
         <script type="text/javascript">
+            var orderInfo = localStorage.getItem('orderinfo');
+            var data = new Array();
+            data = orderInfo.split(",");
             $(document).ready(function (e) {
                 $(".footer").load("footer.html");
+                var s = "<tr><th>Type:</th><th>Name of order:</th><th>Time/Date:</th><th>Price(HKD):</th><th>Total(HKD):"
+                        + "</th></tr><tr><td height='2px' colspan='5'></td></tr>"
+                        + "<tr><td colspan='5'> <p>Flight(s):</p></td></tr>";
+                var temp = data.length / 7;
+                var totalprice = 0;
+                for (var i = 0; i < temp; i++) {
+                    var name = data[0 + (i * 7)] + "--From " + data[2 + (i * 7)] + " To " + data[3 + (i * 7)];
+                    var time = data[1 + (i * 7)];
+                    var price = data[4 + (i * 7)];
+                    totalprice += parseFloat(price);
+                    s += "<tr><td></td>";
+                    s += "<td align=center>" + name + "</td>";
+                    s += "<td align=center>" + time + "</td>";
+                    s += "<td align=center>" + price + "</td>";
+                    if (i == temp - 1) {
+                        s += "<td align=center>" + totalprice + "</td></tr>"
+                        totalprice = 0;
+                    } else {
+                        s += "</tr>"
+                    }
+                    console.log(name + time + price);
+                }
+                console.log(s);
+                $("#showFlight").html(s)
             });
+
+            console.log(data);
         </script>
         <title>checkout</title>
     </head>
@@ -22,11 +51,7 @@
                 <p align="right">Shapping cart</p>
             </div>
             <div class="panel" style="float :left; background-color: transparent; padding: 5px;height: auto">
-                <table width="100%" border="1">
-                    <tr><th>Type:</th><th>Name of order:</th><th>Time/Date:</th><th>Price(HKD):</th><th>Total(HKD):</th></tr>
-                    <tr><td height="2px" colspan="5"></td></tr>
-                    <tr><td colspan="5"> <p>Flight(s):</p></td></tr>
-
+                <table width="100%" id="showFlight">
                 </table>
                 <br/>
 

@@ -45,13 +45,13 @@
                 var password = $("#password").val();
                 try {
                     var JSONdb = JSON.parse(localStorage["db"]);
+                   
                 } catch (err) {
-
                 }
                 if (name === "" || password === "") {
                     alert("Please input userName and Password");
                 } else
-                if (JSONdb !== null) {
+                if (JSONdb != null) {
                     for (i = 0; i < JSONdb.login.length; i++) {
                         var chkname = JSONdb.login[i].username;
                         var chkpassword = JSONdb.login[i].password;
@@ -68,7 +68,6 @@
                             var chkpassword = jd.login[i].password;
                             if (name == chkname && password == chkpassword) {
                                 window.top.location.href = 'index.html';
-
                                 localStorage.setItem('label', chkname);
                             }
                         }
