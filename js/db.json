@@ -31,25 +31,69 @@
             "position": "admin"
         }
     ],
-
-    "Flight":[  
-      {  
-         "ID":"asd",
-         "Company":"sss",
-         "From":"HK",
-         "To":"TW",
-         "Date":"21/12/2015",
-         "Time":"22:55",
-         "Price":"1230.0"
-      },
-      {  
-         "ID":"QQ333",
-         "Company":"WF",
-         "From":"HK",
-         "To":"BJ",
-         "Date":"21/05/2015",
-         "Time":"03:55",
-         "Price":"3500.0"
-      }
-   ]
+    "Flight": [
+        {
+            "ID": "AD7788",
+            "Company": "SOS",
+            "From": "HK",
+            "To": "TW",
+            "Date": "21/12/2015",
+            "Time": "22:55",
+            "Price": "1230.0"
+        },
+        {
+            "ID": "QQ333",
+            "Company": "WF",
+            "From": "HK",
+            "To": "BJ",
+            "Date": "21/05/2015",
+            "Time": "03:55",
+            "Price": "3500.0"
+        },
+        {
+            "ID": "LK23234",
+            "Company": "Google",
+            "From": "TW",
+            "To": "NY",
+            "Date": "12/07/2016",
+            "Time": "14:00",
+            "Price": "5000.0"
+        },
+        {
+            "ID": "ITP4510",
+            "Company": "IVE",
+            "From": "TY",
+            "To": "TM",
+            "Date": "01/09/2016",
+            "Time": "08:30",
+            "Price": "15600.0"
+        },
+        {
+            "ID": "CN689",
+            "Company": "China",
+            "From": "BJ",
+            "To": "HK",
+            "Date": "01/07/2012",
+            "Time": "07:01",
+            "Price": "689.0"
+        },
+        {
+            "ID": "M1234",
+            "Company": "Malaysia Air",
+            "From": "Malaysia",
+            "To": "HK",
+            "Date": "03/03/2015",
+            "Time": "02:09",
+            "Price": "5000.0"
+        },
+        {
+            "ID": "CN8964",
+            "Company": "China Airline",
+            "From": "BJ",
+            "To": "BJ",
+            "Date": "04/06/1989",
+            "Time": "01:00",
+            "Price": "999999.0"
+        }
+    ]
 }
