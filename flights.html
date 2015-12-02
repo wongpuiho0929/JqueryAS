@@ -18,8 +18,8 @@
                             for (var k = 0; k < jd.flight[0].hk[i].company.length; k++) {
                                 s += "<ul class='detail'><li>" + jd.flight[0].hk[i].company[k].name + "</li>";
                                 for (var t = 0; t < jd.flight[0].hk[i].company[k].price.length; t++) {
-                                    s += "<li>Price: (HKD)" + jd.flight[0].hk[i].company[k].price[t];
-                                    s += " Time: " + jd.flight[0].hk[i].company[k].time[t] + "</li>";
+                                    s += "<li>Time: " + jd.flight[0].hk[i].company[k].time[t];
+                                    s += " Price: (HKD)" + jd.flight[0].hk[i].company[k].price[t] + "</li>";
                                 }
                                 s += "</ul>";
                             }
