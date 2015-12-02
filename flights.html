@@ -14,16 +14,21 @@
         <script type="text/javascript" src="js/DataTables-1.10.10/js/jquery.dataTables.js"></script>
         <title>Flights</title>
         <script>
+            var orderinfo = new Array();
             $(document).ready(function () {
 
                 $("#flights_table").on("click", "tr", function () {
                     var data = new Array();
-                    $.each($(this).find("td"),function(){
+                    $.each($(this).find("td"), function () {
                         data.push($(this).text());
                     });
                     var pic = $(this).find("img").attr("src");
-                    var data_confirm='<table><tr><td colspan="2"><img src="'+pic+'" style="width: 300px;height: 300px;"/></td></tr><tr><th>Company Name : </td><td>'+data[0]+'</td></tr><tr><th>From : </td><td>'+data[2]+'</td></tr><tr><th>To : </td><td>'+data[3]+'</td></tr><tr><th>Time : </td><td>'+data[1]+'</td></tr><tr><th>Price : </td><td>'+data[4]+'</td></tr><tr><td>Quantity : </td><td><input type="number" id="qty" /></td></tr></table>';
-                    $(".detailBox").attr("data-confirm",data_confirm);
+                    data.push(pic);
+                    for (i in data) {
+                        orderinfo.push(data[i]);
+                    }
+                    var data_confirm = '<table><tr><td colspan="2"><img src="' + pic + '" style="width: 300px;height: 300px;"/></td></tr><tr><th>Company Name : </td><td>' + data[0] + '</td></tr><tr><th>From : </td><td>' + data[2] + '</td></tr><tr><th>To : </td><td>' + data[3] + '</td></tr><tr><th>Time : </td><td>' + data[1] + '</td></tr><tr><th>Price : </td><td>' + data[4] + '</td></tr><tr><th>Quantity : </th><td><input type="number" id="qty" value="1"/></td></tr></table>';
+                    $(".detailBox").attr("data-confirm", data_confirm);
                     $(".detailBox").click();
                 });
                 $(".hide").hide();
@@ -44,7 +49,7 @@
                                 var fromPlace = "HK";
                                 var pic = jd.flight[0].hk[i].photo;
                                 var dataConfirm = "hi";
-                                row += "<tr><td>" + companyName + "</td><td>" + time + "</td><td>" + fromPlace + "</td><td>" + toPlace + "</td><td>" + price + "</td><td><img style='width:100px;height:100px;' src='"+pic+"' /></td></tr>";
+                                row += "<tr><td>" + companyName + "</td><td>" + time + "</td><td>" + fromPlace + "</td><td>" + toPlace + "</td><td>" + price + "</td><td><img style='width:100px;height:100px;' src='" + pic + "' /></td></tr>";
                             }
                         }
                     }
@@ -55,9 +60,17 @@
                         ]});
 
                 });
-                //$("#plain").animate({top: '200px', right: '200px'});
+
 
             });
+
+            function order() {
+
+
+                console.log(orderinfo);
+                localStorage.setItem('orderinfo', orderinfo);
+
+            }
         </script>
     </head>
 
@@ -70,9 +83,9 @@
             </table>
 
 
-            <div class='detailBox' data-confirm='' ></div>
-                <div class="h50"></div>
-                <div class="footer"></div>
+            <div class='detailBox' onclick="order()" data-confirm='' ></div>
+            <div class="h50"></div>
+            <div class="footer"></div>
         </div>
     </body>
 </html>
