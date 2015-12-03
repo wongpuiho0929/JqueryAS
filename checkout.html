@@ -5,41 +5,45 @@
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
 
-        <script src="http://code.jboxcdn.com/0.3.2/jBox.min.js"></script> <!--JBOX!-->
-        <link href="http://code.jboxcdn.com/0.3.2/jBox.css" rel="stylesheet"/><!--JBOX!-->
+        <script src="js/jBox.min.js"></script> <!--JBOX!-->
+        <link href="css/jBox.css" rel="stylesheet"/><!--JBOX!-->
 
         <script type="text/javascript">
             var orderInfo = localStorage.getItem('orderinfo');
             var data = new Array();
-            var s = "<tr><th>Type:</th><th>Company:</th><th>From:</th><th width=10%>To:</th><th>Date&Time:</th><th>Price(HKD):</th><th>Total(HKD):"
+            var s = "<tr><th>Type:</th><th>Company:</th><th>From:</th><th width=10%>To:</th><th>Date&Time:</th><th>Price(HKD):</th><th>QTY:</th><th>Total(HKD):"
                     + "</th></tr><tr><td height='2px' colspan='6'></td></tr>"
                     + "<tr><td colspan='6'> <p>Flight(s):</p></td></tr>";
             try {
                 data = orderInfo.split(",");
+                console.log(data);
             } catch (TypeError) {
                 s += "<tr><td>No record</td></tr>";
             }
 
-
+            var a, s2 = "", s1 = "";
             $(document).ready(function (e) {
                 $(".footer").load("footer.html");
-                var temp = data.length / 11;
+                var temp = data.length / 8;
                 var totalprice = 0;
                 for (var i = 0; i < temp; i++) {
-                    var type = data[9 + (i * 11)];
-                    var company = data[0 + (i * 11)];
-                    var from = data[3 + (i * 11)];
-                    var to = data[4 + (i * 11)];
-                    var date = data[1 + (i * 11)];
-                    var time = data[2 + (i * 11)];
-                    var price = data[10 + (i * 11)];
-                    totalprice += parseFloat(price);
+                    var type = data[0 + (i * 8)];
+                    var company = data[2 + (i * 8)];
+                    var from = data[3 + (i * 8)];
+                    var to = data[4 + (i * 8)];
+                    var date = data[5 + (i * 8)];
+                    var time = data[6 + (i * 8)];
+                    var price = data[1 + (i * 8)];
+                    var qty = data[7 + (i * 8)];
+                    totalprice += parseFloat(price) * qty;
+                    var totalprice1 = totalprice;
                     s += "<tr><td>" + type + "</td>";
                     s += "<td align=center><font color=#024>" + company + "</font></td>";
                     s += "<td align=center><font size =4>" + from + "</font></td>";
                     s += "<td align=center><font size =4>" + to + "</font></td>";
                     s += "<td align=center><font color=#F00>" + date + "</font> <font color=#024>&</font> <font color=#F00>" + time + "</font></td>";
                     s += "<td align=center>" + price + "</td>";
+                    s += "<td align=center>" + qty + "</td>";
                     if (i == temp - 1) {
                         s += "<td align=center>" + totalprice + "</td></tr>"
                         totalprice = 0;
@@ -47,55 +51,86 @@
                         s += "</tr>"
                     }
 
+                    s2 += "<tr><td align=center><font color=#024>" + company + "--From" + from + " To " + to + "</font></td>";
+                    s2 += "<td align=center><font color=#024>" + date + "</font> <font color=#024>&</font> <font color=#024>" + time + "</font></td>";
+                    s2 += "<td align=center><font color=#024>" + price + "</font></td>";
+                    s2 += "<td align=center><font color=#024>" + qty + "</font></td>";
+                    if (i == temp - 1) {
+                        s2 += "<td align=center><font color=#024>" + totalprice1 + "</font></td></tr>"
+                        totalprice1 = 0;
+                    } else {
+                        s2 += "</tr>"
+                    }
                 }
-
                 $("#showFlight").html(s);
-                var a;
-                var b;
-                $("#pay_but").mousedown(function () {
-                    try {
-                        b.destroy();
-                        a.destroy();
-                    } catch (err) {
-                    }
-                    a = new jBox('Confirm', {
-                        cancelButton: 'Cancel',
-                        confirmButton: 'pay',
-                        animation: 'tada'
-                    });
+                s1 = "<table width=100%>";
+                s1 += "<tr><th>Order</th><th>Date&Time</th><th>Price</th><th>QTY</th><th>Total Price</th></tr>"
+                s1 += s2;
+                s1 += '</table>';
+                s1 += "<hr><center><table>";
+                s1 += '<tr><td>Name</td><td><input type="text" id="Name"/></td></tr>';
+                s1 += '<tr><td colspan=2 height=2px></td></tr>';
+                s1 += '<tr><td>Email</td><td><input type="email" id="Email"/></tr>';
+                s1 += '<tr><td colspan=2 height=2px></td></tr>';
+                s1 += '<tr><td>Phone</td><td><input type="text" id="Phone"/></td></tr>';
+                s1 += '<tr><td colspan=2 height=2px></td></tr>';
+                s1 += '<tr><td>Payment</td><td><input type="radio" name="pay" id="paypal" checked><img src="images/paypal 2.png" width=150px height=50px></input></td></tr>';
+                s1 += '<tr><td colspan=2 align="center"><button onclick="Cancel()">Cancel</button><button onclick="Pay()">Submit</button></td></tr>';
+                s1 += '</table></center>';
 
 
+
+                a = new jBox('Modal', {
+                    width: 500,
+                    height: 300,
+                    attach: $('#pay_but'),
+                    title: 'Payment',
+                    content: s1,
+                    animation: 'tada'
                 });
-                $("#clear_but").mousedown(function () {
-                    try {
-                        a.destroy();
-                        b.destroy();
-                    } catch (err) {
-                    }
-                    b = new jBox('Confirm', {
-                        cancelButton: 'Cancel',
-                        confirmButton: 'Clear',
-                        animation: 'tada'
-                    });
+                var b = new jBox('Confirm', {
+                    cancelButton: 'Cancel',
+                    confirmButton: 'Clear',
+                    confirm: function () {
+                        Clear();
+                    },
+                    animation: 'tada'
+                });
+
+                $("#txtorder").click(function () {
+                    $("#order").html(localStorage.getItem("order"));
+                    $("#shoppingcart").hide();
+                    $("#order").show();
+                });
+
+                $("#txtShop").click(function () {
+                    $("#order").hide();
+                    $("#shoppingcart").show();
                 });
             });
-
             function Clear() {
                 localStorage.removeItem("orderinfo");
                 localStorage.removeItem("orderNumber");
                 location.reload();
                 window.top.location.reload();
-               
+            }
+
+            function Cancel() {
+                a.close();
             }
 
             function Pay() {
-
+                var order = new Array();
+                var s = $("#Name").val()+","+$("#Email").val()+","+$("#Phone").val()+","+localStorage.getItem("orderinfo");
+                order.push(s);
+                localStorage.setItem("order",order);
                 localStorage.removeItem("orderinfo");
                 localStorage.removeItem("orderNumber");
                 location.reload();
                 window.top.location.reload();
-               
             }
+
+
 
         </script>
         <title>checkout</title>
@@ -105,12 +140,14 @@
         <div id="wrapper" style="margin-top: 10px">
 
             <div class="leftpanel" style="line-height: normal; border-right-width: 10px; border-right: #3baae3; border-right-style: solid;" >
-                <img src="images/leftpanel.png" width="170px"/>
+                <img src="images/leftpanel.png" width="140px"/>
 
-                <p align="right">Order</p>
-                <p align="right">Shapping cart</p>
+                
+                <a id='txtorder' href='#' style="text-align: right">Order</a><br/>
+                    <a id='txtShop' href='#'>Shapping cart</a>
+           
             </div>
-            <div class="panel" style="float :left; background-color: transparent; padding: 5px;height: auto">
+            <div class="panel" id="shoppingcart" style="float :left; background-color: transparent; padding: 5px;height: auto; width: 720px">
                 <table width="100%" id="showFlight">
                 </table>
                 <br/>
@@ -118,14 +155,17 @@
                 <table width="100%">
                     <tr><td colspan="5"> <p>Hotel(s):</p></td></tr>
                 </table>
+                <div style="float: left;width: 680px">
+                    <table width="100%">
+                        <tr> <td></td><td></td><td></td><td></td><td align="right"><input id="clear_but" type="submit"  data-confirm="Clear"value="Clear"/>
+                                <input id="pay_but" type="submit" value="Confirm"  style="width: 100px"/></td></tr>
+                        <tr><td colspan="5" align="right"><img src="images/paypal 2.png" width="150px" height="50px"/></td></tr>
+                    </table>
+                </div>
             </div>
-            <div style="float: left;width: 680px">
-                <table width="100%">
-                    <tr> <td></td><td></td><td></td><td></td><td align="right"><input id="clear_but" type="submit" onclick="Clear()" data-confirm="Do you want to Clear it?" value="Clear"/><input onclick="Pay()" id="pay_but" type="submit" value="Confirm" data-confirm="Payment" style="width: 100px"/></td></tr>
-                    <tr><td colspan="5" align="right"><img src="images/paypal 2.png" width="150px" height="50px"/></td></tr>
-                </table>
+            <div class="panel" id="order" style="float :left; background-color: transparent; padding: 5px;height: auto; width: 720px; display: none">
+               
             </div>
-
             <div class="footer"></div>
         </div>
     </body>

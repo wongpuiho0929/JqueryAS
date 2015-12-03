@@ -25,15 +25,24 @@
                     this.blur();
                 });
             });
+
             $(document).ready(function () {
                 if (localStorage.getItem('label') != null) {
                     $('#header_right').html(localStorage.getItem('label') + "|<a href='logout.html'>logout</a>");
-                    new jBox('Notice', {
-                        content: 'Welcome,' + localStorage.getItem('label')
-                    });
+                    try {
+                        var chk = localStorage.getItem('logined');
+                    } catch (err) {
+                    }
+                    if (chk != "true") {
+                        new jBox('Notice', {
+                            content: 'Welcome,' + localStorage.getItem('label')
+                        });
+                    }
+                    localStorage.setItem('logined', "true");
                 }
+
                 if (localStorage.getItem('orderNumber') != null) {
-                    $('#checkoutNumber').html("Checkout("+localStorage.getItem('orderNumber')+")");
+                    $('#checkoutNumber').html("Checkout(" + localStorage.getItem('orderNumber') + ")");
                 }
                 new jBox('Confirm', {
                     cancelButton: 'Cancel',
@@ -87,14 +96,14 @@
                 </div>
                 <div id="header_right">
 
-                    <a target="frame" onclick="login()" data-confirm="<h3>Login:</h3><table>
+                    <a target="frame" onclick="login()" data-confirm="<center><h3>Login:</h3><table>
                        <tr><th align='right'>UserName: </th><td>
                        <input type='text' id='userName' /></td></tr>
                        <tr><td hegith=1></td></tr>
                        <tr><th align='right'>Password: </th><td>
                        <input type='password' id='password' /></td></tr>
 
-                       </table>">Login</a> |
+                       </table></center>">Login</a> |
 
                     <a target="frame" href="register.html">Register</a>
                 </div>

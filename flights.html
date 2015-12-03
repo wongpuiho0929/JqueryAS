@@ -16,7 +16,7 @@
         <script>
             var orderinfo = new Array();
             var temp;
-            var counter =0;
+            var counter = 0;
             $(document).ready(function () {
 
                 $("#flight_data").on("click", "tr", function () {
@@ -25,29 +25,15 @@
 
                     } catch (err) {
                     }
-                    if (orderinfo == null) {
-                        var data = new Array();
-                        $.each($(this).find("td"), function () {
-                            data.push($(this).text());
-                        });
-                        var pic = $(this).find("img").attr("src");
-                        data.push(pic);
-                        for (i in data) {
-                            orderinfo.push(data[i]);
-                        }
-                    } else {
-                        var data = new Array();
-                        $.each($(this).find("td"), function () {
-                            data.push($(this).text());
-                        });
-                        var pic = $(this).find("img").attr("src");
-                        data.push(pic);
-                        for (i in data) {
-                            orderinfo.push(data[i]);
-                        }
-                    }
+
+                    var data = new Array();
+                    $.each($(this).find("td"), function () {
+                        data.push($(this).text());
+                    });
+                    var pic = $(this).find("img").attr("src");
+                    data.push(pic);
                     temp = data[5].split(",");
-                    var data_confirm = '<table><tr><td colspan="2"><img src="' + pic + '" style="width: 300px;height: 300px;"/></td></tr><tr><th>Company Name : </td><td>' + data[0] + '</td></tr><tr><th>From : </td><td>' + data[3] + '</td></tr><tr><th>To : </td><td>' + data[4] + '</td></tr><tr><th>Date : </th><td>' + data[1] + '</td></tr><tr><th>Time : </td><td>' + data[2] + '</td></tr><tr><th>Price (First/Business): </td><td>' + '<input type=radio name=a id=1>' + temp[0] + '</input>' + '<input type=radio name=a id=2 checked>' + temp[1] + '</input>' + '</td></tr><tr><th>Quantity : </th><td><input type="number" id="qty" value="1"/></td></tr></table>';
+                    var data_confirm = '<table><tr><td colspan="2"><img src="' + pic + '" style="width: 300px;height: 300px;"/></td></tr><tr><th >Company Name : </th><td id=companyName>' + data[0] + '</td></tr><tr><th >From : </th><td id=from>' + data[3] + '</td></tr><tr><th >To : </th><td id=to>' + data[4] + '</td></tr><tr><th >Date : </th><td id=date>' + data[1] + '</td></tr><tr><th >Time : </th><td id=time>' + data[2] + '</td></tr><tr><th >Price (First/Business): </th><td id=price>' + '<input type=radio name=a id=RF>' + temp[0] + '</input>' + '<input type=radio name=a id=RB checked>' + temp[1] + '</input>' + '</td></tr><tr><th>Quantity : </th><td><input type="number" id="qty" value="1"/></td></tr></table>';
                     $(".detailBox").attr("data-confirm", data_confirm);
                     $(".detailBox").click();
                 });
@@ -82,23 +68,30 @@
             });
 
             function order() {
-                
-                if ($('#1').is(':checked')) {
-                    orderinfo.push("First class");
-                    orderinfo.push(temp[0]);
-                } else {
-                    orderinfo.push("Business class");
-                    orderinfo.push(temp[1]);
+                if (localStorage.getItem('label') != null) {
+                    if ($('#RF').is(':checked')) {
+                        orderinfo.push("First class");
+                        orderinfo.push(temp[0]);
+                    } else {
+                        orderinfo.push("Business class");
+                        orderinfo.push(temp[1]);
+                    }
+                    orderinfo.push(document.getElementById("companyName").innerHTML);
+                    orderinfo.push(document.getElementById("from").innerHTML);
+                    orderinfo.push(document.getElementById("to").innerHTML);
+                    orderinfo.push(document.getElementById("date").innerHTML);
+                    orderinfo.push(document.getElementById("time").innerHTML);
+                    orderinfo.push($("#qty").val());
+                    localStorage.setItem('orderinfo', orderinfo);
+                    if (localStorage.getItem('orderNumber') != null) {
+                        counter = localStorage.getItem('orderNumber');
+                    }
+                    counter++;
+                    localStorage.setItem('orderNumber', counter);
+                     top.frames.location.reload(false);
+                }else{
+                    alert("login First");
                 }
-                console.log(orderinfo);
-                localStorage.setItem('orderinfo', orderinfo);
-                if(localStorage.getItem('orderNumber') != null){
-                    counter = localStorage.getItem('orderNumber');
-                }
-                counter++;
-                localStorage.setItem('orderNumber',counter);
-                window.top.location.reload();
-
             }
         </script>
     </head>
