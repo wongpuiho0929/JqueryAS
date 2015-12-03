@@ -11,6 +11,16 @@
         <script type="text/javascript">
             $(document).ready(function (e) {
                 $(".footer").load("footer.html");
+                $.getJSON('js/db.json', function (jd) {
+                    for(var i = 0;i < jd.Hotels.length;i++){
+                        var name = jd.Hotels[i].Name;
+                        var address = jd.Hotels[i].Address;
+                        var price = jd.Hotels[i].Price;
+                        alert(price);
+                        var s = "<tr><td>"+name+"</td><td>"+address+"</td><td>"+price+"</td><td>"+name+"</td></tr>";
+                    }
+                    
+                });
                 $(".display").DataTable({
                     "aoColumnDefs": [
                         {"bSearchable": false, "aTargets": [4]}
@@ -23,7 +33,7 @@
     <body>
         <div id="wrapper" style="margin-top: 10px">
             <table id='hotels_table' class='display' cellspacing='0' width='100%'>
-                <thead><tr><th>Name</th><th>Location</th><th>Address</th><th>Price</th><th>Action</th></tr></thead>
+                <thead><tr><th>Name</th><th>Address</th><th>Price</th><th>Action</th></tr></thead>
                 <tbody></tbody>
             </table>
             <div class="footer"></div>
