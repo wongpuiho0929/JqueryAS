@@ -86,8 +86,8 @@
                     animation: 'tada'
                 });
                 var b = new jBox('Confirm', {
-                    cancelButton: 'Cancel',
-                    confirmButton: 'Clear',
+                    cancelButton: 'No',
+                    confirmButton: 'Yes',
                     confirm: function () {
                         Clear();
                     },
@@ -209,7 +209,7 @@
                 <hr style="border-style: solid"/>
                 <div style="float: left;width: 680px">
                     <table width="100%">
-                        <tr> <td></td><td></td><td></td><td></td><td align="right"><input id="clear_but" type="submit"  data-confirm="Clear"value="Clear"/>
+                        <tr> <td></td><td></td><td></td><td></td><td align="right"><input id="clear_but" type="submit"  data-confirm="Do you want to clear you shopping cart?"value="Clear"/>
                                 <input id="pay_but" type="submit" value="Confirm"  style="width: 100px"/></td></tr>
                         <tr><td colspan="5" align="right"><img src="images/paypal 2.png" width="150px" height="50px"/></td></tr>
                     </table>
