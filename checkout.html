@@ -11,9 +11,10 @@
         <script type="text/javascript">
             var orderInfo = localStorage.getItem('orderinfo');
             var data = new Array();
-            var s = "<tr><th>Type:</th><th>Company:</th><th>From:</th><th width=10%>To:</th><th>Date&Time:</th><th>Price(HKD):</th><th>QTY:</th><th>Total(HKD):"
+            var total = 0;
+            var s = "<tr><td colspan='6'> <p>Flight(s):</p></td></tr>"
                     + "</th></tr><tr><td height='2px' colspan='6'></td></tr>"
-                    + "<tr><td colspan='6'> <p>Flight(s):</p></td></tr>";
+                    + "<tr><th>Type:</th><th>Company:</th><th>From:</th><th width=10%>To:</th><th>Date&Time:</th><th>Price(HKD):</th><th>QTY:</th><th>Total(HKD):";
             try {
                 data = orderInfo.split(",");
                 console.log(data);
@@ -57,34 +58,15 @@
                     Fdetail += "<td align=center><font color=#024>" + qty + "</font></td>";
                     if (i == temp - 1) {
                         Fdetail += "<td align=center><font color=#024>" + totalprice1 + "</font></td></tr>"
+                        total += totalprice1;
                         totalprice1 = 0;
                     } else {
                         Fdetail += "</tr>"
                     }
                 }
+
                 $("#showFlight").html(s);
-                s1 = "<table width=100%>";
-                s1 += "<tr><th>Order</th><th>Date&Time</th><th>Price</th><th>QTY</th><th>Total Price</th></tr>"
-                s1 += Fdetail;
-                s1 += '</table>';
-                s1 += "<hr><center><table>";
-                s1 += '<tr><td>Name</td><td><input type="text" id="Name"/></td></tr>';
-                s1 += '<tr><td colspan=2 height=2px></td></tr>';
-                s1 += '<tr><td>Email</td><td><input type="email" id="Email"/></tr>';
-                s1 += '<tr><td colspan=2 height=2px></td></tr>';
-                s1 += '<tr><td>Phone</td><td><input type="text" id="Phone"/></td></tr>';
-                s1 += '<tr><td colspan=2 height=2px></td></tr>';
-                s1 += '<tr><td>Payment</td><td><input type="radio" name="pay" id="paypal" checked><img src="images/paypal 2.png" width=150px height=50px></input></td></tr>';
-                s1 += '<tr><td colspan=2 align="center"><button onclick="Cancel()">Cancel</button><button onclick="Pay()">Submit</button></td></tr>';
-                s1 += '</table></center>';
-                a = new jBox('Modal', {
-                    width: 500,
-                    height: 300,
-                    attach: $('#pay_but'),
-                    title: 'Payment',
-                    content: s1,
-                    animation: 'tada'
-                });
+
                 var b = new jBox('Confirm', {
                     cancelButton: 'No',
                     confirmButton: 'Yes',
@@ -93,10 +75,23 @@
                     },
                     animation: 'tada'
                 });
+
                 $("#txtorder").click(function () {
-                    $("#order").html(localStorage.getItem("order"));
-                    var a = localStorage.getItem("order").split("!");
-                    console.log(a);
+                    var orderTable = "<tr><th>OrderID:</th><th>Order Date:</th><th>Detail:</th></tr>";
+                    try {
+                        var a = localStorage.getItem("order").split("!");
+
+                        for (var i = 1; i < a.length; i++) {
+                            orderTable += "<tr><td align=center>" + i + "</td>";
+                            var today = new Date().toJSON().slice(0, 10);
+                            orderTable += "<td align=center>" + today + "</td>";
+                            orderTable += "<td align='center'><a href='#'  id='" + i + "' onclick='ShowDetails(" + i + ")'>Show order</a></td></td>";
+                        }
+                        console.log(a);
+                    } catch (TypeError) {
+                        orderTable += "<tr><td>No record</td></tr>";
+                    }
+                    $('#orderTable').html(orderTable);
 
                     $("#shoppingcart").hide();
                     $("#order").show();
@@ -108,8 +103,8 @@
                 //End of show flights records. 
                 var data1 = new Array();
                 var orderHotel = localStorage.getItem('orderHotel');
-                s2 = "<tr><th>Hotel Name:</th><th width=145px align=center>Address:</th><th width=200px align=center>Booking:</th><th>Price(HKD):</th><th>QTY:</th><th>Total(HKD):</th></tr>";
-                s2 += "<tr><td colspan=3><p>Hotel(s):</p></td></tr>";
+                s2 = "<tr><td colspan=3><p>Hotel(s):</p></td></tr>";
+                s2 += "<tr><th>Hotel Name:</th><th width=145px align=center>Address:</th><th width=200px align=center>Booking:</th><th>Price(HKD):</th><th>QTY:</th><th>Total(HKD):</th></tr>";
                 try {
                     data1 = orderHotel.split(",");
                     console.log(data1);
@@ -118,6 +113,7 @@
                 }
                 var temp1 = data1.length / 8;
                 var totalprice1 = 0;
+                Fdetail += "<tr><td colspan=5><hr/></td></tr>";
                 for (var i = 0; i < temp1; i++) {
                     var company = data1[0 + (i * 8)];
                     var address = data1[1 + (i * 8)];
@@ -140,6 +136,7 @@
                     var VIPD_P = temp[1];
                     var VIPD_Q = temp[2];
                     totalprice1 += parseFloat(NS_P) * NS_Q + parseFloat(VIPS_P) * VIPS_Q + parseFloat(ND_P) * ND_Q + parseFloat(VIPD_P) * VIPD_Q;
+                    var totalprice2 = totalprice1;
                     s2 += "<tr><td>" + company + "</td>";
                     s2 += "<td align=center><font size=3>" + address + ",<br/>" + location + ",<br/>" + city + "</font></td>";
                     s2 += "<td align=center><font size =4>" + NS + "<br/>" + ND + "<br/>" + VIPS + "<br/>" + VIPD + "</font></td>";
@@ -151,8 +148,86 @@
                     } else {
                         s2 += "</tr><tr><td colspan=5 height=2px></td></td>"
                     }
+
+                    Fdetail += "<tr><td align=center><font color=#024>" + company + "</font></td>";
+                    var type = "", price = "", qty = "";
+                    if (NS_Q != "0") {
+                        type += NS + "<br>";
+                        price += NS_P + "<br>";
+                        qty += NS_Q + "<br>";
+                    }
+                    if (ND_Q != "0") {
+                        type += ND + "<br>";
+                        price += ND_P + "<br>";
+                        qty += ND_Q + "<br>";
+                    }
+                    if (VIPS_Q != "0") {
+                        type += VIPS + "<br>";
+                        price += VIPS_P + "<br>";
+                        qty += VIPS_Q + "<br>";
+                    }
+                    if (VIPD_Q != "0") {
+                        type += VIPD;
+                        price += VIPD_P + "<br>";
+                        qty += VIPD_Q + "<br>";
+                    }
+                    Fdetail += "<td align=center><font color=#024>" + type + "</font></td>";
+                    Fdetail += "<td align=center><font color=#024>" + price + "</font></td>";
+                    Fdetail += "<td align=center><font color=#024>" + qty + "</font></td>";
+                    if (i == temp1 - 1) {
+                        Fdetail += "<td align=center><font color=#024>" + totalprice2 + "</font></td></tr>"
+                        total += totalprice2;
+                        totalprice2 = 0;
+                    } else {
+                        Fdetail += "</tr>"
+                    }
+
                 }
+                s1 = "<table width=100%>";
+                s1 += "<tr><th>Order</th><th>Date&Time</th><th>Price</th><th>QTY</th><th>Total Price</th></tr>"
+                s1 += Fdetail;
+                s1 += '</table>';
+                s1 += "<hr>You should pay : <font size=5 color=red>$" + total + "</font><center><table>";
+                s1 += '<tr><td>Name</td><td><input type="text" id="Name"/></td></tr>';
+                s1 += '<tr><td colspan=2 height=2px></td></tr>';
+                s1 += '<tr><td>Email</td><td><input type="email" id="Email"/></tr>';
+                s1 += '<tr><td colspan=2 height=2px></td></tr>';
+                s1 += '<tr><td>Phone</td><td><input type="text" id="Phone"/></td></tr>';
+                s1 += '<tr><td colspan=2 height=2px></td></tr>';
+                s1 += '<tr><td>Payment</td><td><input type="radio" name="pay" id="paypal" checked><img src="images/paypal 2.png" width=150px height=50px></input></td></tr>';
+                s1 += '<tr><td colspan=2 align="center"><button onclick="Cancel()">Cancel</button><button onclick="Pay()">Submit</button></td></tr>';
+                s1 += '</table></center>';
+                s1 += "<script>function Pay() {"
+                        + "if (localStorage.getItem('label') != null) {"
+                        + "var order = new Array();"
+                        + "if (localStorage.getItem('order') != null) {"
+                        + "order = localStorage.getItem('order').split(',');"
+                        + "}"
+                        + "if($('#Phone').val()==\"\"||$('#Phone').val().length!=8){alert('Please fill in your Phone!');document.getElementById('Phone').style.borderColor = 'Red';document.getElementById('Phone').style.borderWidth = 'thick'}"
+                        + "else if($('#Email').val()==\"\"){alert('Please fill in your Email!');}"
+                        + "else if($('#Name').val()==\"\"){alert('Please fill in your Name!');document.getElementById('Name').style.borderColor = 'Red';document.getElementById('Phone').style.borderWidth = 'thick'}else{"
+                        + "var s = '!' + $('#Name').val() + ',' + $('#Email').val() + ',' + $('#Phone').val() + ',' +getFdetail() +','+" + total + ";"
+                        + "order.push(s);"
+                        + "localStorage.setItem('order', order);"
+                        + "localStorage.removeItem('orderHotel');"
+                        + "localStorage.removeItem('orderinfo');"
+                        + "localStorage.removeItem('orderNumber');"
+                        + "location.reload();"
+                        + "window.top.location.reload();}"
+                        + "}else{"
+                        + "    alert('Login First');"
+                        + "}"
+                        + "}<\/script>";
+                a = new jBox('Modal', {
+                    width: 500,
+                    height: 300,
+                    attach: $('#pay_but'),
+                    title: 'Payment',
+                    content: s1,
+                    animation: 'tada'
+                });
                 $("#showHotel").html(s2);
+
             });
             function Clear() {
                 localStorage.removeItem("orderinfo");
@@ -166,23 +241,28 @@
                 a.close();
             }
 
-            function Pay() {
-                var order = new Array();
-                if (localStorage.getItem("order") != null) {
-                    order = localStorage.getItem("order").split(",");
-                }
-                var s = "!" + $("#Name").val() + "," + $("#Email").val() + "," + $("#Phone").val() + "," + localStorage.getItem("orderinfo") + ",*" + localStorage.getItem("orderHotel");
-                order.push(s);
-                localStorage.setItem("order", order);
-                localStorage.removeItem("orderHotel");
-                localStorage.removeItem("orderinfo");
-                localStorage.removeItem("orderNumber");
-                location.reload();
-                window.top.location.reload();
+            function ShowDetails(id) {
+                var index = parseInt("id");
+                var a = localStorage.getItem("order").split("!");
+                var data = a[id].split(",");
+                var s = "<table width=100%>";
+                s += "<tr><th>Order</th><th>Date&Time</th><th>Price</th><th>QTY</th><th>Total Price</th></tr>";
+                s += data[3];
+                s += "</table>";
+                s += "<hr/>";
+                s += "<hr>You already pay : <font size=5 color=red>$" + data[4] + "</font><center><table>";
+                a = new jBox('Modal', {
+                    width: 500,
+                    height: 300,
+                    attach: $('#' + id),
+                    title: 'Order Detail',
+                    content: s,
+                    animation: 'tada'
+                });
             }
-
-
-
+            function getFdetail() {
+                return Fdetail;
+            }
         </script>
         <title>checkout</title>
     </head>
@@ -201,22 +281,23 @@
             <div class="panel" id="shoppingcart" style="float :left; background-color: transparent; padding: 5px;height: auto; width: 720px">
                 <table width="100%" id="showFlight">
                 </table>
-                <hr style="border-style: solid"/>
+                <hr style="border-style: solid;color:#0ec4f7"/>
 
                 <table width="100%" id="showHotel">
 
                 </table>
-                <hr style="border-style: solid"/>
+                <hr style="border-style: solid;color:#0ec4f7"/>
                 <div style="float: left;width: 680px">
                     <table width="100%">
                         <tr> <td></td><td></td><td></td><td></td><td align="right"><input id="clear_but" type="submit"  data-confirm="Do you want to clear you shopping cart?"value="Clear"/>
-                                <input id="pay_but" type="submit" value="Confirm"  style="width: 100px"/></td></tr>
+                                <input id="pay_but" type="submit" value="Confirm"  style="width: 100px;"/></td></tr>
                         <tr><td colspan="5" align="right"><img src="images/paypal 2.png" width="150px" height="50px"/></td></tr>
                     </table>
                 </div>
             </div>
             <div class="panel" id="order" style="float :left; background-color: transparent; padding: 5px;height: auto; width: 720px; display: none">
-
+                <table id="orderTable" width="100%" style="color:#000">
+                </table>
             </div>
             <div class="footer"></div>
         </div>
