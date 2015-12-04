@@ -564,4 +564,18 @@ div {
     vertical-align: top;
 }
 
+#hotels_table {
+    font-size: 16px;
+    color : #000;
+}
 
+#detailBox {
+    width: 80%;
+    height: 80%;
+    background-color: #ffffff;
+    
+}
+
+#detailBox_table{
+    color : #000;
+}

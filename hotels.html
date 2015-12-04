@@ -3,6 +3,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/jBox.css" />
+        <script type="text/javascript" src="js/jBox.min.js"></script>
         <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
         <script type="text/javascript" src="js/jquery-ui-1.11.4/jquery-ui.js"></script>
         <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.11.4/jquery-ui.css"/>
@@ -12,14 +14,31 @@
             $(document).ready(function (e) {
                 $(".footer").load("footer.html");
                 $.getJSON('js/db.json', function (jd) {
-                    for(var i = 0;i < jd.Hotels.length;i++){
+                    for (var i = 0; i < jd.Hotels.length; i++) {
                         var name = jd.Hotels[i].Name;
                         var address = jd.Hotels[i].Address;
                         var price = jd.Hotels[i].Price;
-                        var s = "<tr><td>"+name+"</td><td>"+address+"</td><td>"+price+"</td></tr>";
+                        var s = "<tr><td>" + name + "</td><td>" + address + "</td><td>" + price + "</td></tr>";
                         $("#data_body").append(s);
                     }
                     $(".display").DataTable();
+                });
+
+                new jBox('Confirm', {
+                    confirmButton: 'Add to Shopping Cart',
+                    cancelButton: 'Back'
+                });
+                $("#data_body").on("click", "tr", function () {
+                    var data = new Array();
+                    $.each($(this).find("td"), function () {
+                        data.push($(this).text());
+                    });
+                    temp = data[2].split(",");
+
+                    var data_confirm = '<table id="detailBox_table"><tr><th >Hotel Name : </th><td id=companyName>' + data[0] + '</td></tr><tr><th >Address : </th><td id="address">' + data[1] + '</td></tr><tr><th>Room: </th><td id="price"  align="left">' + '<input type="checkbox" id="room" value="Normal Single Room" /> Normal Single Room (' + temp[0] + ')<input type="number" id="qty_NS" min="0" value="0"/><br/><input type="checkbox" id="room" value="Normal Double Room" /> Normal Double Room (' + temp[1] + ')<input type="number" id="qty_NS" min="0" value="0"/><br/><input type="checkbox" id="room" value="VIP Single Room" /> VIP Single Room (' + temp[2] + ')<input type="number" id="qty_NS" min="0" value="0"/><br/><input type="checkbox" id="room" value="VIP Double Room" /> VIP Double Room ' + temp[3] + '<input type="number" id="qty_NS" min="0" value="0"/><br/></td></tr><tr><th>Quantity : </th><td><input type="number" id="qty" value="1"/></td></tr></table>';
+
+                    $(".detailBox").attr("data-confirm", data_confirm);
+                    $(".detailBox").click();
                 });
             });
         </script>
@@ -28,10 +47,11 @@
 
     <body>
         <div id="wrapper" style="margin-top: 10px">
-            <table id='hotels_table' class='display' cellspacing='0' width='100%'>
-                <thead><tr><th>Name</th><th>Address</th><th>Price</th></tr></thead>
-                <tbody id='data_body'></tbody>
+            <table id='hotels_table' class='display'cellspacing='0' width='100%'>
+                <thead><tr><th>Hotel Name</th><th>Address</th><th>Price</th></tr></thead>
+                <tbody id='data_body'  align="center" ></tbody>
             </table>
+            <div class='detailBox' onclick="order()" data-confirm='' ></div>
             <div class="footer"></div>
         </div>
     </body>
