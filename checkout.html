@@ -95,9 +95,9 @@
                 });
                 $("#txtorder").click(function () {
                     $("#order").html(localStorage.getItem("order"));
-                    var a= localStorage.getItem("order").split("!");
+                    var a = localStorage.getItem("order").split("!");
                     console.log(a);
-                    
+
                     $("#shoppingcart").hide();
                     $("#order").show();
                 });
@@ -124,22 +124,19 @@
                     var NS = temp[0];
                     var NS_P = temp[1];
                     var NS_Q = temp[2];
-                    totalprice1 += parseFloat(NS_P) * NS_Q;
                     var temp = data1[3 + (i * 6)].split("|");
                     var ND = temp[0];
                     var ND_P = temp[1];
                     var ND_Q = temp[2];
-                    totalprice1 += parseFloat(ND_P) * ND_Q;
                     var temp = data1[4 + (i * 6)].split("|");
                     var VIPS = temp[0];
                     var VIPS_P = temp[1];
                     var VIPS_Q = temp[2];
-                    totalprice1 += parseFloat(VIPS_P) * VIPS_Q;
                     var temp = data1[5 + (i * 6)].split("|");
                     var VIPD = temp[0];
                     var VIPD_P = temp[1];
                     var VIPD_Q = temp[2];
-                    totalprice1 += parseFloat(VIPD_P) * VIPD_Q;
+                    totalprice1 += parseFloat(NS_P) * NS_Q + parseFloat(VIPS_P) * VIPS_Q + parseFloat(ND_P) * ND_Q + parseFloat(VIPD_P) * VIPD_Q;
                     s2 += "<tr><td>" + company + "</td>";
                     s2 += "<td align=center><font color=#024>" + address + "</font></td>";
                     s2 += "<td align=center><font size =4>" + NS + "<br/>" + ND + "<br/>" + VIPS + "<br/>" + VIPD + "</font></td>";
@@ -171,7 +168,7 @@
                 if (localStorage.getItem("order") != null) {
                     order = localStorage.getItem("order").split(",");
                 }
-                var s = "!"+$("#Name").val() + "," + $("#Email").val() + "," + $("#Phone").val() + "," + localStorage.getItem("orderinfo") + "," + localStorage.getItem("orderHotel");
+                var s = "!" + $("#Name").val() + "," + $("#Email").val() + "," + $("#Phone").val() + "," + localStorage.getItem("orderinfo") + ",*" + localStorage.getItem("orderHotel");
                 order.push(s);
                 localStorage.setItem("order", order);
                 localStorage.removeItem("orderHotel");

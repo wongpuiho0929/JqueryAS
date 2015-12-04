@@ -12,7 +12,7 @@
         <script type="text/javascript" src="js/DataTables-1.10.10/js/jquery.dataTables.js"></script>
         <script type="text/javascript">
             var temp;
-            var counter=0;
+            var counter = 0;
             var orderHotel = new Array();
             $(document).ready(function (e) {
                 try {
@@ -44,7 +44,7 @@
                     });
                     temp = data[2].split(",");
 
-                    var data_confirm = '<table id="detailBox_table"><tr><th id=HN>Hotel Name : </th><td id=hotalName>' + data[0] + '</td></tr><tr><th >Address : </th><td id="address">' + data[1] + '</td></tr><tr><th>Room: </th><td align="left">' + '<input type="checkbox" id="NSR" value="Normal Single Room" /> Normal Single Room (' + temp[0] + ')<input type="number" id="qty_NS" min="0" value="0"/><br/><input type="checkbox" id="NDR" value="Normal Double Room" /> Normal Double Room (' + temp[1] + ')<input type="number" id="qty_ND" min="0" value="0"/><br/><input type="checkbox" id="VIPS" value="VIP Single Room" /> VIP Single Room (' + temp[2] + ')<input type="number" id="qty_VIPS" min="0" value="0"/><br/><input type="checkbox" id="VIPD" value="VIP Double Room" /> VIP Double Room ' + temp[3] + '<input type="number" id="qty_VIPD" min="0" value="0"/><br/></td></tr></table>';
+                    var data_confirm = '<table id="detailBox_table"><tr><th id=HN>Hotel Name : </th><td id=hotalName>' + data[0] + '</td></tr><tr><th >Address : </th><td id="address">' + data[1] + '</td></tr><tr><th>Room: </th><td align="left">' + 'Normal Single Room (' + temp[0] + ')<input type="number" id="qty_NS" min="0" value="0"/><br/>Normal Double Room (' + temp[1] + ')<input type="number" id="qty_ND" min="0" value="0"/><br/>VIP Single Room (' + temp[2] + ')<input type="number" id="qty_VIPS" min="0" value="0"/><br/>VIP Double Room ' + temp[3] + '<input type="number" id="qty_VIPD" min="0" value="0"/><br/></td></tr></table>';
 
                     $(".detailBox").attr("data-confirm", data_confirm);
                     $(".detailBox").click();
@@ -54,31 +54,10 @@
                 if (localStorage.getItem('label') != null) {
                     orderHotel.push(document.getElementById("hotalName").innerHTML);
                     orderHotel.push(document.getElementById("address").innerHTML);
-                    if ($('#NSR').is(':checked')) {
-                        orderHotel.push("Normal Single Room|" + temp[0] + "|" + $("#qty_NS").val());
-                        console.log(orderHotel);
-                    }else{
-                        orderHotel.push("");
-                    }
-                    if ($('#NDR').is(':checked')) {
-                        orderHotel.push("Normal Double Room|" + temp[1] + "|" + $("#qty_ND").val());
-                        console.log(orderHotel);
-                    }else{
-                        orderHotel.push("");
-                    }
-                    if ($('#VIPS').is(':checked')) {
-                        orderHotel.push("VIP Single Room|" + temp[2] + "|" + $("#qty_VIPS").val());
-                        console.log(orderHotel);
-                    }else{
-                        orderHotel.push("");
-                    }
-                    if ($('#VIPD').is(':checked')) {
-                        orderHotel.push("VIP Double Room|" + temp[3] + "|" + $("#qty_VIPD").val());
-                        console.log(orderHotel);
-                    }else{
-                        orderHotel.push("");
-                    }
-
+                    orderHotel.push("Normal Single Room|" + temp[0] + "|" + $("#qty_NS").val());
+                    orderHotel.push("Normal Double Room|" + temp[1] + "|" + $("#qty_ND").val());
+                    orderHotel.push("VIP Single Room|" + temp[2] + "|" + $("#qty_VIPS").val());
+                    orderHotel.push("VIP Double Room|" + temp[3] + "|" + $("#qty_VIPD").val());
                     localStorage.setItem('orderHotel', orderHotel);
                     if (localStorage.getItem('orderNumber') != null) {
                         counter = localStorage.getItem('orderNumber');
