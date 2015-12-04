@@ -53,6 +53,7 @@
             function login() {
                 var name = $('#userName').val();
                 var password = $("#password").val();
+                var checking = false;
                 try {
                     var JSONdb = JSON.parse(localStorage["db"]);
 
@@ -65,24 +66,33 @@
                     for (i = 0; i < JSONdb.login.length; i++) {
                         var chkname = JSONdb.login[i].username;
                         var chkpassword = JSONdb.login[i].password;
-                        if (name === chkname && password === chkpassword) {
+                        if (name == chkname && password == chkpassword) {
+                            checking = true;
                             window.top.location.href = 'index.html';
-                            localStorage.setItem('label', chkname);
+                            localStorage.setItem('label', name);
                         }
                     }
+                    if (checking == false)
+                        alert("Maybe your username or password is wrong.\nPlease check and login again.");
                 } else {
                     $.getJSON('js/db.json', function (jd) {
                         for (i = 0; i < jd.login.length; i++) {
                             var chkname = jd.login[i].username;
                             var chkpassword = jd.login[i].password;
                             if (name == chkname && password == chkpassword) {
+                                checking = true;
                                 window.top.location.href = 'index.html';
-                                localStorage.setItem('label', chkname);
+                                localStorage.setItem('label', name);
+
                             }
                         }
+                        if (checking == false)
+                            alert("Maybe your username or password is wrong.\nPlease check and login again.");
                     })
-
                 }
+
+
+
             }
         </script>
 

@@ -38,8 +38,14 @@
                 $("#Register").click(function () {
                     var name = $('#userName').val();
                     var password = $("#password").val();
+                    var checked = $("#chkbox:checked").length === 1;
+
                     if (name == "" || password == "") {
                         alert("Please input userName and Password");
+                        $("#leftphoto").html("<img src='images/welcome3.png' id='leftphot'/>");
+                        $("#rightphoto").html("<img src='images/welcome4.png' id='rightphoto'/>");
+                    } else if (checked !== true) {
+                        alert("You have to agree our Terms and conditions before you register.");
                         $("#leftphoto").html("<img src='images/welcome3.png' id='leftphot'/>");
                         $("#rightphoto").html("<img src='images/welcome4.png' id='rightphoto'/>");
                     } else
@@ -64,7 +70,7 @@
                             var i = JSONdb.login.length + 1;
                             JSONdb.login.push({"id": i, "username": name, "password": password, "position": "admin"});
                             localStorage["db"] = JSON.stringify(JSONdb);
-                            alert("Successful");
+                            alert("Successful\nCongratulations for being the millionth user!");
                             console.log(localStorage.getItem("db"));
                             window.top.location.href = "index.html";
                         }
@@ -84,7 +90,7 @@
                             if (chkname) {
                                 var i = jd.login.length + 1;
                                 jd['login'].push({"id": i, "username": name, "password": password, "position": "admin"});
-                                alert("Successful");
+                                alert("Successful\nCongratulations for being the millionth user!");
                                 localStorage["db"] = JSON.stringify(jd);
                                 console.log(localStorage["db"]);
                                 window.top.location.href = "index.html";
@@ -128,17 +134,12 @@
                 })();
             });
         </script>
-        <link rel="import" id="footerPage" href="footer.html" />
-        <script>
-            var getImport = document.querySelector('#footerPage');
-            var getContent = getImport.import.querySelector('.footer');
-            $("#wrapper").append(document.importNode(getContent, true));
-        </script>
+
     </head>
 
     <body>
 
-        <center><div style="background-color: #F1F2F3; width: 800px;" >
+        <center><div style="width: 800px;" >
                 Quick sign up:
                 <table >
 
