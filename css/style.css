@@ -515,17 +515,19 @@ div {
 }
 
 .panel {
-    margin-bottom: 20px;
-    background-color: #FFF;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
-    width: 680px;
-    height: 30px;
-    padding: 0px;
-
-    font-size: 16px;
-    color: #0ec4f7;
+	margin-bottom: 20px;
+	background-color: #FFF;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+	width: 680px;
+	height: 30px;
+	font-size: 16px;
+	color: #0ec4f7;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 13px;
+	padding-left: 0px;
 
 }
 
@@ -594,4 +596,13 @@ div {
 .room {
     width : 200px;
     display: inline-block;
+}
+
+#wrapper div .panel div b {
+	display:block;
+	height:30px;
+	margin-bottom: 5px;
+}
+#wrapper div .panel table tr td {
+	padding-bottom: 5px;
 }
