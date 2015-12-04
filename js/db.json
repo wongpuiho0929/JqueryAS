@@ -46,7 +46,7 @@
             "Company": "WF",
             "From": "HK",
             "To": "BJ",
-            "Date": "21/05/2015",
+            "Date": "21/01/2016",
             "Time": "03:55",
             "Price": "35000.0,3500.0"
         },
@@ -63,7 +63,7 @@
             "ID": "ITP4510",
             "Company": "IVE",
             "From": "TY",
-            "To": "TM",
+            "To": "NY",
             "Date": "01/09/2016",
             "Time": "08:30",
             "Price": "15600.0,1560.0"
@@ -73,7 +73,7 @@
             "Company": "China",
             "From": "BJ",
             "To": "HK",
-            "Date": "01/07/2012",
+            "Date": "01/07/2016",
             "Time": "07:01",
             "Price": "6890,689.0"
         },
@@ -82,7 +82,7 @@
             "Company": "Malaysia Airline",
             "From": "Malaysia",
             "To": "HK",
-            "Date": "03/03/2015",
+            "Date": "03/01/2016",
             "Time": "02:09",
             "Price": "20000.0,5000.0"
         },
@@ -91,7 +91,7 @@
             "Company": "China Airline",
             "From": "BJ",
             "To": "BJ",
-            "Date": "04/06/1989",
+            "Date": "31/12/2015",
             "Time": "01:00",
             "Price": "999999.0,9999.0"
         },
@@ -107,18 +107,18 @@
     ],
     "Hotels": [
         {
-            "Name": "A303a",
-            "Address": "IVE(TY)",
+            "Name": "Royal Plaza Hotel",
+            "Address": "193 Prince Edward Road West, Kowloon Mongkok, Hong Kong",
             "Price": [
-                250,
-                500,
+                700,
                 1000,
+                1700,
                 2000
             ]
         },
         {
-            "Name": "A305",
-            "Address": "IVE(TY)",
+            "Name": "Primo Guesthouse",
+            "Address": "Flat E3 3/F Block E Chungking Mansion 40 Nathan Road, Tsim Sha Tsui, Hong Kong",
             "Price": [
                 350,
                 650,
@@ -127,13 +127,53 @@
             ]
         },
         {
-            "Name": "A109",
-            "Address": "IVE(TY)",
+            "Name": "The Cityview Hotel",
+            "Address": "23 Waterloo Road,Yau Ma Tei, Hong Kong",
             "Price": [
                 1000,
                 1999,
                 5000,
                 9999
+            ]
+        },
+        {
+            "Name": "Silka Seaview Hotel",
+            "Address": "268 Shanghai Street ,Yau Ma Tei, Hong Kong",
+            "Price": [
+                1300,
+                2400,
+                6700,
+                10000
+            ]
+        },
+        {
+            "Name": "Regal Kowloon Hotel",
+            "Address": "71 Mody Road,Tsim Sha Tsui, Hong Kong",
+            "Price": [
+                420,
+                1000,
+                3700,
+                5000
+            ]
+        },
+        {
+            "Name": "Metropark Mongkok Hotel",
+            "Address": "22 Lai Chi Kok Road,Mongkok, Hong Kong",
+            "Price": [
+                1400,
+                2200,
+                4200,
+                6000
+            ]
+        },
+        {
+            "Name": "The Mira Hotel",
+            "Address": "118 Nathan Road,Tsim Sha Tsui, Hong Kong",
+            "Price": [
+                2400,
+                3500,
+                4500,
+                9000
             ]
         }
     ]

@@ -14,10 +14,12 @@
                 $.getJSON('js/db.json', function (jd) {
 
                     var s = "";
-
+                    var lastTo = "";
                     for (i in jd.Flight) {
+                        if(lastTo == jd.Flight[i].To)
+                            continue;
                         s += "<li><img src='images/" + jd.Flight[i].To + ".jpg' width='290' height='300'></li>";
-
+                        lastTo = jd.Flight[i].To;
                     }
                     $("#scroller").html(s);
 

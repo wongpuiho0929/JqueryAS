@@ -86,8 +86,8 @@
                     animation: 'tada'
                 });
                 var b = new jBox('Confirm', {
-                    cancelButton: 'Cancel',
-                    confirmButton: 'Clear',
+                    cancelButton: 'No',
+                    confirmButton: 'Yes',
                     confirm: function () {
                         Clear();
                     },
@@ -112,33 +112,36 @@
                 s2 += "<tr><td colspan=3><p>Hotel(s):</p></td></tr>";
                 try {
                     data1 = orderHotel.split(",");
+                    console.log(data1);
                 } catch (TypeError) {
                     s2 += "<tr><td>No record</td></tr>";
                 }
-                var temp1 = data1.length / 6;
+                var temp1 = data1.length / 8;
                 var totalprice1 = 0;
                 for (var i = 0; i < temp1; i++) {
-                    var company = data1[0 + (i * 6)];
-                    var address = data1[1 + (i * 6)];
-                    var temp = data1[2 + (i * 6)].split("|");
+                    var company = data1[0 + (i * 8)];
+                    var address = data1[1 + (i * 8)];
+                    var location = data1[2];
+                    var city = data1[3];
+                    var temp = data1[4 + (i * 8)].split("|");
                     var NS = temp[0];
                     var NS_P = temp[1];
                     var NS_Q = temp[2];
-                    var temp = data1[3 + (i * 6)].split("|");
+                    var temp = data1[5 + (i * 8)].split("|");
                     var ND = temp[0];
                     var ND_P = temp[1];
                     var ND_Q = temp[2];
-                    var temp = data1[4 + (i * 6)].split("|");
+                    var temp = data1[6 + (i * 8)].split("|");
                     var VIPS = temp[0];
                     var VIPS_P = temp[1];
                     var VIPS_Q = temp[2];
-                    var temp = data1[5 + (i * 6)].split("|");
+                    var temp = data1[7 + (i * 8)].split("|");
                     var VIPD = temp[0];
                     var VIPD_P = temp[1];
                     var VIPD_Q = temp[2];
                     totalprice1 += parseFloat(NS_P) * NS_Q + parseFloat(VIPS_P) * VIPS_Q + parseFloat(ND_P) * ND_Q + parseFloat(VIPD_P) * VIPD_Q;
                     s2 += "<tr><td>" + company + "</td>";
-                    s2 += "<td align=center><font color=#024>" + address + "</font></td>";
+                    s2 += "<td align=center><font size=3>" + address + ",<br/>" + location + ",<br/>" + city + "</font></td>";
                     s2 += "<td align=center><font size =4>" + NS + "<br/>" + ND + "<br/>" + VIPS + "<br/>" + VIPD + "</font></td>";
                     s2 += "<td align=center><font size =4>" + NS_P + "<br/>" + ND_P + "<br/>" + VIPS_P + "<br/>" + VIPD_P + "</font></td>";
                     s2 += "<td align=center><font size =4>" + NS_Q + "<br/>" + ND_Q + "<br/>" + VIPS_Q + "<br/>" + VIPD_Q + "</font></td>";
@@ -206,7 +209,7 @@
                 <hr style="border-style: solid"/>
                 <div style="float: left;width: 680px">
                     <table width="100%">
-                        <tr> <td></td><td></td><td></td><td></td><td align="right"><input id="clear_but" type="submit"  data-confirm="Clear"value="Clear"/>
+                        <tr> <td></td><td></td><td></td><td></td><td align="right"><input id="clear_but" type="submit"  data-confirm="Do you want to clear you shopping cart?"value="Clear"/>
                                 <input id="pay_but" type="submit" value="Confirm"  style="width: 100px"/></td></tr>
                         <tr><td colspan="5" align="right"><img src="images/paypal 2.png" width="150px" height="50px"/></td></tr>
                     </table>
