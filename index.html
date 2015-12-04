@@ -13,6 +13,7 @@
         <link href="css/jBox.css" rel="stylesheet"/><!--JBOX!-->
         <script type="text/javascript">
             $(function () {
+                
                 $('#menu li').hover(function () {
                     var _this = $(this),
                             _subnav = _this.children('ul');
@@ -27,6 +28,7 @@
             });
 
             $(document).ready(function () {
+                
                 if (localStorage.getItem('label') != null) {
                     $('#header_right').html(localStorage.getItem('label') + "|<a href='logout.html'>logout</a>");
                     try {

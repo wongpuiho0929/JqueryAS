@@ -211,7 +211,6 @@ h6 {
     margin-top: 5px; 
     font-size:20px;
 
-
 }
 
 #header_right a { 
@@ -578,4 +577,21 @@ div {
 
 #detailBox_table{
     color : #000;
+    
+}
+
+#detailBox_table th {
+    width:100px;
+}
+#detailBox_table td {
+    align:left;
+}
+#detailBox_table input[type=number] {
+    width:40px;
+    margin-right: 0px;
+}
+
+.room {
+    width : 200px;
+    display: inline-block;
 }
