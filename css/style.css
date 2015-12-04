@@ -606,3 +606,8 @@ div {
 #wrapper div .panel table tr td {
 	padding-bottom: 5px;
 }
+
+#terms {
+    width: 98%;
+    height:100%;
+}
